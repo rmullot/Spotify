@@ -7,8 +7,11 @@ target 'Spotify' do
   use_frameworks!
 
   # Pods for Spotify
-
-
+  pod 'SwiftLint', '~> 0.30.1'
+  pod 'SwiftMessages', '~> 6.0.2'
+  pod 'ReachabilitySwift', '~> 4.3.0'
+  pod 'SwiftGen', '~> 6.0.2'
+  pod 'Kingfisher', '~> 5.1.0'
 
 end
 
@@ -20,6 +23,22 @@ end
 target 'SpotifyUITests' do
   inherit! :search_paths
   # Pods for testing
+end
+
+target 'SpotifyCore' do
+  use_frameworks!
+  
+  # Pods for SpotifyCore
+  pod 'ReachabilitySwift', '~> 4.3.0'
+  pod 'SwiftMessages', '~> 6.0.2'
+
+end
+
+target 'SpotifyUI' do
+  use_frameworks!
+  
+  # Pods for SpotifyUI
+
 end
 
 post_install do |installer|
