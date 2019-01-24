@@ -1,15 +1,15 @@
 //
-//  SpotifyUITests.swift
-//  SpotifyUITests
+//  SpotifyCoreTests.swift
+//  SpotifyCoreTests
 //
 //  Created by Romain Mullot on 24/01/2019.
 //  Copyright © 2019 Romain Mullot. All rights reserved.
 //
 
 import XCTest
-@testable import SpotifyUI
+@testable import SpotifyCore
 
-class SpotifyUITests: XCTestCase {
+class SpotifyCoreTests: XCTestCase {
 
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
