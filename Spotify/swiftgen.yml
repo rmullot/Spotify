@@ -1,0 +1,6 @@
+strings:
+  inputs:
+  - SpotifyCore/Resources/en.lproj/Localizable.strings
+  outputs:
+    templateName: structured-swift4
+    output: SpotifyCore/Generated/Strings.swift

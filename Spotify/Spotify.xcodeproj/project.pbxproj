@@ -334,6 +334,8 @@
 		7AA7CC1521FA115F002DEE1B /* SpotifyCore */ = {
 			isa = PBXGroup;
 			children = (
+				7AA7CC5521FA1646002DEE1B /* Generated */,
+				7AA7CC5421FA161C002DEE1B /* Resources */,
 				7AA7CC1621FA115F002DEE1B /* SpotifyCore.h */,
 				7AA7CC1721FA115F002DEE1B /* Info.plist */,
 			);
@@ -367,6 +369,20 @@
 			path = SpotifyUITests;
 			sourceTree = "<group>";
 		};
+		7AA7CC5421FA161C002DEE1B /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		7AA7CC5521FA1646002DEE1B /* Generated */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Generated;
+			sourceTree = "<group>";
+		};
 		814E3E2740C19F1001B9E61C /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -381,7 +397,6 @@
 				DABE45418887164120D4FFA8 /* Pods-SpotifyUITests.debug.xcconfig */,
 				DB351320D4124965EC9FD752 /* Pods-SpotifyUITests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -417,6 +432,8 @@
 				7AA7CBD621FA0F5D002DEE1B /* Resources */,
 				7AA7CC2E21FA115F002DEE1B /* Embed Frameworks */,
 				94432B1AE8530AB214E6B5E5 /* [CP] Embed Pods Frameworks */,
+				7AA7CC5621FA166E002DEE1B /* SwiftLint */,
+				7AA7CC5721FA1685002DEE1B /* SwiftGen */,
 			);
 			buildRules = (
 			);
@@ -660,6 +677,42 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		7AA7CC5621FA166E002DEE1B /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
+		};
+		7AA7CC5721FA1685002DEE1B /* SwiftGen */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftGen;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "$PODS_ROOT/SwiftGen/bin/swiftgen\n";
+		};
 		94432B1AE8530AB214E6B5E5 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
