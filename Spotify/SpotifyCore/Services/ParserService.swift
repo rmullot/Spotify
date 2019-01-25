@@ -52,7 +52,7 @@ public final class ParserService<T>: ParserServiceProtocol where T: Codable {
       print("codingPath:", context.codingPath)
       do {
         let spotifyError = try JSONDecoder().decode(SpotifyErrorRoot.self, from: json)
-        completionHandler?(ParserResult.failure(ParserError.spotifyError, spotifyError.error.message))
+        completionHandler?(ParserResult.failure(ParserError.spotifyError, "Spotify error returned: \(spotifyError.error.message)"))
       } catch {
         print("error: ", error)
         completionHandler?(ParserResult.failure(ParserError.decodeObject, context.debugDescription))

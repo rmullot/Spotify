@@ -80,10 +80,10 @@ public final class WebServiceService: WebServiceServiceProtocol {
     self.getDataWith(urlString: searchArtistURL, type: .searchArtists, completion: { (result) in
       switch result {
       case .success(let data):
-        ParserService<[Artist]>.parse(data, completionHandler: { (result) in
+        ParserService<SearchArtistsRoot>.parse(data, completionHandler: { (result) in
           switch result {
-          case .success(let artists):
-            guard let artists = artists  else {
+          case .success(let searchArtistsRoot):
+            guard let artists = searchArtistsRoot?.artists.items  else {
               completionHandler(.error("Returned object is not an array of Artist type"))
               return
             }
@@ -129,7 +129,7 @@ public final class WebServiceService: WebServiceServiceProtocol {
     case .searchArtists:
       request.httpMethod = "GET"
       guard let accessToken = spotifyAuth?.accessToken else { return }
-      request.addValue(accessToken, forHTTPHeaderField: "Authorization")
+      request.addValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
     }
 
     NetworkActivityService.sharedInstance.newRequestStarted()
