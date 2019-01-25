@@ -30,17 +30,3 @@ public struct Artist: Codable {
   }
 
 }
-
-public struct Image: Codable {
-  var height: Int = 0
-  var url: String = ""
-  var width: Int = 0
-  
-  public init(from decoder: Decoder) throws {
-    let values = try decoder.container(keyedBy: CodingKeys.self)
-    height = try values.decode(Int.self, forKey: .height)
-    url = try values.decode(String.self, forKey: .url)
-    width = try values.decode(Int.self, forKey: .width)
-  }
-  
-}

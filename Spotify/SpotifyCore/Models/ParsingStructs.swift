@@ -20,11 +20,31 @@ public struct SearchArtistsRoot: Codable {
 public struct SearchArtists: Codable {
   var href: String = ""
   var items: [Artist] = []
-  
+
   public init(from decoder: Decoder) throws {
     let values = try decoder.container(keyedBy: CodingKeys.self)
     href = try values.decode(String.self, forKey: .href)
     items = try values.decode([Artist].self, forKey: .items)
+  }
+}
+
+public struct SearchTracksRoot: Codable {
+  var tracks: [Track] = []
+  
+  public init(from decoder: Decoder) throws {
+    let values = try decoder.container(keyedBy: CodingKeys.self)
+    tracks = try values.decode([Track].self, forKey: .tracks)
+  }
+}
+
+public struct SearchAlbumsRoot: Codable {
+  var href: String = ""
+  var items: [Album] = []
+  
+  public init(from decoder: Decoder) throws {
+    let values = try decoder.container(keyedBy: CodingKeys.self)
+    href = try values.decode(String.self, forKey: .href)
+    items = try values.decode([Album].self, forKey: .items)
   }
 }
 
@@ -47,5 +67,3 @@ public struct SpotifyError: Codable {
     message = try values.decode(String.self, forKey: .message)
   }
 }
-
-

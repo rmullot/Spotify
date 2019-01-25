@@ -14,38 +14,98 @@ public enum Result<T> {
   case error(String)
 }
 
-private enum TypeWebService {
-  case authentification
-  case searchArtists
-}
-
 public protocol WebServiceServiceProtocol {
   var isTokenValid: Bool { get }
   func getAuth(completionHandler:@escaping (Result<SpotifyAuth>) -> Void)
+  func getArtistsList(artistName: String, completionHandler: @escaping (Result<[Artist]>) -> Void)
+  func getAlbumsList(idArtist: String, completionHandler: @escaping (Result<[Album]>) -> Void)
+  func getTopTrackList(idArtist: String, completionHandler: @escaping (Result<[Track]>) -> Void)
   func cancelRequests()
 }
 
 public final class WebServiceService: WebServiceServiceProtocol {
+  
+  // MARK: Attributes
 
-  public var onlineMode: OnlineMode = .online
-  public static let sharedInstance = WebServiceService()
-
+  private enum TypeWebService {
+    case authentification
+    case searchAlbums
+    case searchArtists
+    case searchTopTracks
+  }
+  
   private enum SpotifyKeys: String {
-    case uri = "https://api.spotify.com/v1/"
+    case uriSearch = "https://api.spotify.com/v1/search?q="
+    case uriArtists = "https://api.spotify.com/v1/artists/"
     case authURL = "https://accounts.spotify.com/api/token"
     case clientID = "62965bb37d4e4733aaf9115e0775d64c"
     case secret = "7a3b7af6325e495f93698996fd6bbf6a"
   }
-
+  
+  public var onlineMode: OnlineMode = .online
+  public static let sharedInstance = WebServiceService()
+  
   private var spotifyAuth: SpotifyAuth?
-
+  
   private var urlSearch = ""
-
+  
   private let marginMessageBox: CGFloat = 20
-
+  
   public var isTokenValid: Bool {
     guard let spotifyAuth = spotifyAuth else { return false }
     return spotifyAuth.isValid
+  }
+
+  // MARK: - Public Methods
+
+  public func getTopTrackList(idArtist: String, completionHandler: @escaping (Result<[Track]>) -> Void) {
+    let searchTopTrackURL = "\(SpotifyKeys.uriArtists.rawValue)\(idArtist)/top-tracks"
+    self.getDataWith(urlString: searchTopTrackURL, type: .searchTopTracks, completion: { (result) in
+      switch result {
+      case .success(let data):
+        ParserService<SearchTracksRoot>.parse(data, completionHandler: { (result) in
+          switch result {
+          case .success(let searchTracksRoot):
+            guard let tracks = searchTracksRoot?.tracks  else {
+              completionHandler(.error("Returned object is not an array of Artist type"))
+              return
+            }
+            completionHandler(.success(tracks))
+          case .failure(_, let message):
+            completionHandler(.error(message))
+          }
+        })
+      
+      case .error(let message):
+        ErrorService.sharedInstance.showErrorMessage(message: message)
+        completionHandler(.error(message))
+      }
+    })
+  }
+  
+  public func getAlbumsList(idArtist: String, completionHandler: @escaping (Result<[Album]>) -> Void) {
+    let searchAlbumsURL = "\(SpotifyKeys.uriArtists.rawValue)\(idArtist)/albums"
+    self.getDataWith(urlString: searchAlbumsURL, type: .searchAlbums, completion: { (result) in
+      switch result {
+      case .success(let data):
+        ParserService<SearchAlbumsRoot>.parse(data, completionHandler: { (result) in
+          switch result {
+          case .success(let searchAlbumsRoot):
+            guard let albums = searchAlbumsRoot?.items  else {
+              completionHandler(.error("Returned object is not an array of Artist type"))
+              return
+            }
+            completionHandler(.success(albums))
+          case .failure(_, let message):
+            completionHandler(.error(message))
+          }
+        })
+        
+      case .error(let message):
+        ErrorService.sharedInstance.showErrorMessage(message: message)
+        completionHandler(.error(message))
+      }
+    })
   }
 
   public func getAuth(completionHandler:@escaping (Result<SpotifyAuth>) -> Void) {
@@ -76,7 +136,7 @@ public final class WebServiceService: WebServiceServiceProtocol {
 
   public func getArtistsList(artistName: String, completionHandler: @escaping (Result<[Artist]>) -> Void) {
 
-    let searchArtistURL = "\(SpotifyKeys.uri.rawValue)search?q=\(artistName.urlEncoded())&type=artist"
+    let searchArtistURL = "\(SpotifyKeys.uriSearch.rawValue)\(artistName.urlEncoded())&type=artist"
     self.getDataWith(urlString: searchArtistURL, type: .searchArtists, completion: { (result) in
       switch result {
       case .success(let data):
@@ -116,6 +176,8 @@ public final class WebServiceService: WebServiceServiceProtocol {
     }
   }
 
+  // MARK: - Private Methods
+
   private func getDataWith(urlString: String, type: TypeWebService, completion: @escaping (Result<Data>) -> Void) {
     guard let url = URL(string: urlString) else { return completion(.error("Invalid URL, we can't update your feed")) }
     var request = URLRequest(url: url)
@@ -126,7 +188,7 @@ public final class WebServiceService: WebServiceServiceProtocol {
       request.httpBody = bodyParams.data(using: String.Encoding.ascii, allowLossyConversion: true)
       let base64Key = "\(SpotifyKeys.clientID.rawValue):\(SpotifyKeys.secret.rawValue)".toBase64()
       request.addValue("Basic \(base64Key)", forHTTPHeaderField: "Authorization")
-    case .searchArtists:
+    case .searchArtists,.searchAlbums,.searchTopTracks:
       request.httpMethod = "GET"
       guard let accessToken = spotifyAuth?.accessToken else { return }
       request.addValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")

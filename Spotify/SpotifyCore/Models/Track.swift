@@ -8,6 +8,19 @@
 
 import Foundation
 
-public struct Track {
+public struct Track: Codable {
+  var idTrack: String = ""
+  var name: String = ""
+
+  enum CodingKeys: String, CodingKey {
+    case idTrack = "id"
+    case name = "name"
+  }
+
+  public init(from decoder: Decoder) throws {
+    let values = try decoder.container(keyedBy: CodingKeys.self)
+    idTrack = try values.decode(String.self, forKey: .idTrack)
+    name = try values.decode(String.self, forKey: .name)
+  }
 
 }
