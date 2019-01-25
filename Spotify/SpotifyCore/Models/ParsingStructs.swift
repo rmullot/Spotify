@@ -20,11 +20,11 @@ public struct ArtistListRoot: Decodable {
 }
 
 public struct SpotifyErrorRoot: Codable {
-  var error: [SpotifyError] = []
+  var error: SpotifyError
 
   public init(from decoder: Decoder) throws {
     let values = try decoder.container(keyedBy: CodingKeys.self)
-    error = try values.decode([SpotifyError].self, forKey: .error)
+    error = try values.decode(SpotifyError.self, forKey: .error)
   }
 }
 

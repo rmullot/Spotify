@@ -15,13 +15,10 @@ public enum ParserResult<T> where T: Codable {
 
 public enum ParserError: Error {
     case decodeObject
+    case spotifyError
     case unavailableAPI
     case unknownObject
 }
-
-//public enum JSONError: Int {
-//  case noTokenProvided = 401
-//}
 
 public typealias ParserCallback<T> = (ParserResult<T>) -> Void where T: Codable
 
@@ -37,15 +34,6 @@ public final class ParserService<T>: ParserServiceProtocol where T: Codable {
   public static func parse(_ json: Data, completionHandler: ParserCallback<T>?) {
     do {
       let decodedObject = try JSONDecoder().decode(T.self, from: json)
-      if decodedObject is SpotifyErrorRoot {
-        let spotifyError = decodedObject as! SpotifyErrorRoot
-        guard spotifyError.error.isNotEmpty else {
-          completionHandler?(ParserResult.failure(ParserError.unavailableAPI, "unknown parsing error"))
-          return
-        }
-        let message = spotifyError.error[0].message
-        completionHandler?(ParserResult.failure(ParserError.unavailableAPI, message))
-      }
       completionHandler?(ParserResult.success(decodedObject))
 
     } catch DecodingError.dataCorrupted(let context) {
@@ -62,7 +50,13 @@ public final class ParserService<T>: ParserServiceProtocol where T: Codable {
     } catch DecodingError.typeMismatch(let type, let context) {
       print("Type '\(type)' mismatch:", context.debugDescription)
       print("codingPath:", context.codingPath)
-      completionHandler?(ParserResult.failure(ParserError.decodeObject, context.debugDescription))
+      do {
+        let spotifyError = try JSONDecoder().decode(SpotifyErrorRoot.self, from: json)
+        completionHandler?(ParserResult.failure(ParserError.spotifyError, spotifyError.error.message))
+      } catch {
+        print("error: ", error)
+        completionHandler?(ParserResult.failure(ParserError.decodeObject, context.debugDescription))
+      }
     } catch {
       print("error: ", error)
       completionHandler?(ParserResult.failure(ParserError.unknownObject, error.localizedDescription))
