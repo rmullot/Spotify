@@ -36,6 +36,15 @@
 		7AA7CC6921FA1AAD002DEE1B /* MutexCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AA7CC6221FA1AAD002DEE1B /* MutexCounter.swift */; };
 		7AA7CC6A21FA1AAD002DEE1B /* CwlMutex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AA7CC6421FA1AAD002DEE1B /* CwlMutex.swift */; };
 		7AA7CC6C21FA1AC0002DEE1B /* ErrorService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AA7CC6B21FA1AC0002DEE1B /* ErrorService.swift */; };
+		7AA7CC7021FA2935002DEE1B /* WebServiceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AA7CC6F21FA2935002DEE1B /* WebServiceService.swift */; };
+		7AA7CC7321FA2D1F002DEE1B /* Artist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AA7CC7221FA2D1F002DEE1B /* Artist.swift */; };
+		7AA7CC7521FA2D2A002DEE1B /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AA7CC7421FA2D2A002DEE1B /* Album.swift */; };
+		7AA7CC7721FA2D36002DEE1B /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AA7CC7621FA2D36002DEE1B /* Track.swift */; };
+		7AA7CC7921FA2EF2002DEE1B /* ParserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AA7CC7821FA2EF2002DEE1B /* ParserService.swift */; };
+		7AA7CC7C21FB2ABC002DEE1B /* String+Spotify.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AA7CC7B21FB2ABC002DEE1B /* String+Spotify.swift */; };
+		7AA7CC7E21FB3C27002DEE1B /* ParsingStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AA7CC7D21FB3C27002DEE1B /* ParsingStructs.swift */; };
+		7AA7CC8021FB7AB3002DEE1B /* UserDefaultsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AA7CC7F21FB7AB3002DEE1B /* UserDefaultsService.swift */; };
+		7AA7CC8221FB8C72002DEE1B /* Array+Spotify.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AA7CC8121FB8C72002DEE1B /* Array+Spotify.swift */; };
 		AA2F91F06AB50C4444EAA156 /* libPods-SpotifyUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19A524E33DB04AE2F14CEBB5 /* libPods-SpotifyUITests.a */; };
 		E2CE2CC9D8F37E250BFE3F3E /* Pods_SpotifyCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0347D7BA77BD15210130D0F /* Pods_SpotifyCore.framework */; };
 /* End PBXBuildFile section */
@@ -157,6 +166,15 @@
 		7AA7CC6B21FA1AC0002DEE1B /* ErrorService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorService.swift; sourceTree = "<group>"; };
 		7AA7CC6D21FA1B4A002DEE1B /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Main.strings; sourceTree = "<group>"; };
 		7AA7CC6E21FA1B4A002DEE1B /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		7AA7CC6F21FA2935002DEE1B /* WebServiceService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebServiceService.swift; sourceTree = "<group>"; };
+		7AA7CC7221FA2D1F002DEE1B /* Artist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Artist.swift; sourceTree = "<group>"; };
+		7AA7CC7421FA2D2A002DEE1B /* Album.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Album.swift; sourceTree = "<group>"; };
+		7AA7CC7621FA2D36002DEE1B /* Track.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
+		7AA7CC7821FA2EF2002DEE1B /* ParserService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParserService.swift; sourceTree = "<group>"; };
+		7AA7CC7B21FB2ABC002DEE1B /* String+Spotify.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Spotify.swift"; sourceTree = "<group>"; };
+		7AA7CC7D21FB3C27002DEE1B /* ParsingStructs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParsingStructs.swift; sourceTree = "<group>"; };
+		7AA7CC7F21FB7AB3002DEE1B /* UserDefaultsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsService.swift; sourceTree = "<group>"; };
+		7AA7CC8121FB8C72002DEE1B /* Array+Spotify.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Spotify.swift"; sourceTree = "<group>"; };
 		90CBB884C5DC9D5D22E9DC1E /* Pods-SpotifyCore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpotifyCore.debug.xcconfig"; path = "Target Support Files/Pods-SpotifyCore/Pods-SpotifyCore.debug.xcconfig"; sourceTree = "<group>"; };
 		94E6CC3FA9EF9D79CD8C1889 /* Pods-SpotifyCore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpotifyCore.release.xcconfig"; path = "Target Support Files/Pods-SpotifyCore/Pods-SpotifyCore.release.xcconfig"; sourceTree = "<group>"; };
 		A12E01B77748CC0733FF7E9F /* Pods-SpotifyUI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpotifyUI.debug.xcconfig"; path = "Target Support Files/Pods-SpotifyUI/Pods-SpotifyUI.debug.xcconfig"; sourceTree = "<group>"; };
@@ -354,6 +372,8 @@
 		7AA7CC1521FA115F002DEE1B /* SpotifyCore */ = {
 			isa = PBXGroup;
 			children = (
+				7AA7CC7A21FB2AA8002DEE1B /* Extensions */,
+				7AA7CC7121FA2D0C002DEE1B /* Models */,
 				7AA7CC5D21FA1AAD002DEE1B /* Network */,
 				7AA7CC5C21FA1A94002DEE1B /* Services */,
 				7AA7CC5521FA1646002DEE1B /* Generated */,
@@ -410,7 +430,10 @@
 		7AA7CC5C21FA1A94002DEE1B /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				7AA7CC6F21FA2935002DEE1B /* WebServiceService.swift */,
+				7AA7CC7821FA2EF2002DEE1B /* ParserService.swift */,
 				7AA7CC6B21FA1AC0002DEE1B /* ErrorService.swift */,
+				7AA7CC7F21FB7AB3002DEE1B /* UserDefaultsService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -434,6 +457,26 @@
 				7AA7CC6421FA1AAD002DEE1B /* CwlMutex.swift */,
 			);
 			path = "Third Party ";
+			sourceTree = "<group>";
+		};
+		7AA7CC7121FA2D0C002DEE1B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				7AA7CC7221FA2D1F002DEE1B /* Artist.swift */,
+				7AA7CC7421FA2D2A002DEE1B /* Album.swift */,
+				7AA7CC7621FA2D36002DEE1B /* Track.swift */,
+				7AA7CC7D21FB3C27002DEE1B /* ParsingStructs.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		7AA7CC7A21FB2AA8002DEE1B /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				7AA7CC7B21FB2ABC002DEE1B /* String+Spotify.swift */,
+				7AA7CC8121FB8C72002DEE1B /* Array+Spotify.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		814E3E2740C19F1001B9E61C /* Pods */ = {
@@ -941,9 +984,18 @@
 				7AA7CC5A21FA1A66002DEE1B /* Strings.swift in Sources */,
 				7AA7CC6521FA1AAD002DEE1B /* NetworkActivityService.swift in Sources */,
 				7AA7CC6821FA1AAD002DEE1B /* DispatchQueue+Cancellable.swift in Sources */,
+				7AA7CC7C21FB2ABC002DEE1B /* String+Spotify.swift in Sources */,
+				7AA7CC8221FB8C72002DEE1B /* Array+Spotify.swift in Sources */,
+				7AA7CC7021FA2935002DEE1B /* WebServiceService.swift in Sources */,
 				7AA7CC6621FA1AAD002DEE1B /* ReachabilityService.swift in Sources */,
 				7AA7CC6721FA1AAD002DEE1B /* MultiCastDelegate.swift in Sources */,
+				7AA7CC7521FA2D2A002DEE1B /* Album.swift in Sources */,
+				7AA7CC7321FA2D1F002DEE1B /* Artist.swift in Sources */,
 				7AA7CC6A21FA1AAD002DEE1B /* CwlMutex.swift in Sources */,
+				7AA7CC8021FB7AB3002DEE1B /* UserDefaultsService.swift in Sources */,
+				7AA7CC7921FA2EF2002DEE1B /* ParserService.swift in Sources */,
+				7AA7CC7721FA2D36002DEE1B /* Track.swift in Sources */,
+				7AA7CC7E21FB3C27002DEE1B /* ParsingStructs.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

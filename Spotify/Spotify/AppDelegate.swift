@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SpotifyCore
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -14,7 +15,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   var window: UIWindow?
 
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+
     // Override point for customization after application launch.
+    let getArtistsCompletionHandler = {
+      WebServiceService.sharedInstance.getArtistsList(artistName: "the offspring") { (result) in
+        switch result {
+        case .success(let artists):
+          print(artists)
+        case .error(let message):
+          print(message)
+        }
+      }
+    }
+    guard WebServiceService.sharedInstance.isTokenValid else {
+      WebServiceService.sharedInstance.getAuth { result in
+        switch result {
+        case .success(let auth):
+          if auth.isValid {
+            getArtistsCompletionHandler()
+          }
+        case .error(let message):
+          print(message)
+        }
+      }
+      return true
+    }
+    getArtistsCompletionHandler()
+
     return true
   }
 
