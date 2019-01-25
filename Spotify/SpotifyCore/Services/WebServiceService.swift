@@ -59,106 +59,121 @@ public final class WebServiceService: WebServiceServiceProtocol {
   // MARK: - Public Methods
 
   public func getTopTrackList(idArtist: String, completionHandler: @escaping (Result<[Track]>) -> Void) {
-    let searchTopTrackURL = "\(SpotifyKeys.uriArtists.rawValue)\(idArtist)/top-tracks"
-    self.getDataWith(urlString: searchTopTrackURL, type: .searchTopTracks, completion: { (result) in
-      switch result {
-      case .success(let data):
-        ParserService<SearchTracksRoot>.parse(data, completionHandler: { (result) in
-          switch result {
-          case .success(let searchTracksRoot):
-            guard let tracks = searchTracksRoot?.tracks  else {
-              completionHandler(.error("Returned object is not an array of Artist type"))
-              return
+    checkAuth { (success) in
+        guard success else {
+          completionHandler(.error("Authentification not possible"))
+          return
+        }
+        let searchTopTrackURL = "\(SpotifyKeys.uriArtists.rawValue)\(idArtist)/top-tracks"
+        self.getDataWith(urlString: searchTopTrackURL, type: .searchTopTracks, completion: { (result) in
+        switch result {
+        case .success(let data):
+          ParserService<SearchTracksRoot>.parse(data, completionHandler: { (result) in
+            switch result {
+            case .success(let searchTracksRoot):
+              guard let tracks = searchTracksRoot?.tracks  else {
+                completionHandler(.error("Returned object is not an array of Tracks type"))
+                return
+              }
+              completionHandler(.success(tracks))
+            case .failure(_, let message):
+              completionHandler(.error(message))
             }
-            completionHandler(.success(tracks))
-          case .failure(_, let message):
-            completionHandler(.error(message))
-          }
-        })
+          })
 
-      case .error(let message):
-        ErrorService.sharedInstance.showErrorMessage(message: message)
-        completionHandler(.error(message))
-      }
-    })
+        case .error(let message):
+          ErrorService.sharedInstance.showErrorMessage(message: message)
+          completionHandler(.error(message))
+        }
+      })
+    }
   }
 
   public func getAlbumsList(idArtist: String, completionHandler: @escaping (Result<[Album]>) -> Void) {
-    let searchAlbumsURL = "\(SpotifyKeys.uriArtists.rawValue)\(idArtist)/albums"
-    self.getDataWith(urlString: searchAlbumsURL, type: .searchAlbums, completion: { (result) in
-      switch result {
-      case .success(let data):
-        ParserService<SearchAlbumsRoot>.parse(data, completionHandler: { (result) in
-          switch result {
-          case .success(let searchAlbumsRoot):
-            guard let albums = searchAlbumsRoot?.items  else {
-              completionHandler(.error("Returned object is not an array of Artist type"))
-              return
-            }
-            completionHandler(.success(albums))
-          case .failure(_, let message):
-            completionHandler(.error(message))
-          }
-        })
-
-      case .error(let message):
-        ErrorService.sharedInstance.showErrorMessage(message: message)
-        completionHandler(.error(message))
+    checkAuth { (success) in
+      guard success else {
+        completionHandler(.error("Authentification not possible"))
+        return
       }
-    })
+      let searchAlbumsURL = "\(SpotifyKeys.uriArtists.rawValue)\(idArtist)/albums"
+      self.getDataWith(urlString: searchAlbumsURL, type: .searchAlbums, completion: { (result) in
+        switch result {
+        case .success(let data):
+          ParserService<SearchAlbumsRoot>.parse(data, completionHandler: { (result) in
+            switch result {
+            case .success(let searchAlbumsRoot):
+              guard let albums = searchAlbumsRoot?.items  else {
+                completionHandler(.error("Returned object is not an array of Albums type"))
+                return
+              }
+              completionHandler(.success(albums))
+            case .failure(_, let message):
+              completionHandler(.error(message))
+            }
+          })
+
+        case .error(let message):
+          ErrorService.sharedInstance.showErrorMessage(message: message)
+          completionHandler(.error(message))
+        }
+      })
+    }
   }
 
   public func getAuth(completionHandler:@escaping (Result<SpotifyAuth>) -> Void) {
-
-    self.getDataWith(urlString: SpotifyKeys.authURL.rawValue, type: .authentification, completion: { (result) in
-      switch result {
-      case .success(let data):
-        ParserService<SpotifyAuth>.parse(data, completionHandler: { (result) in
+      getDataWith(urlString: SpotifyKeys.authURL.rawValue, type: .authentification, completion: { (result) in
         switch result {
-        case .success(let auth):
-          guard let auth = auth  else {
-            completionHandler(.error("Returned object is not SpotifyAuth type"))
-            return
-          }
-          UserDefaultsService.saveObject(auth)
-          completionHandler(.success(auth))
-        case .failure(_, let message):
-          completionHandler(.error(message))
-        }
-        })
-
-      case .error(let message):
-        ErrorService.sharedInstance.showErrorMessage(message: message)
-        completionHandler(.error(message))
-      }
-    })
-  }
-
-  public func getArtistsList(artistName: String, completionHandler: @escaping (Result<[Artist]>) -> Void) {
-
-    let searchArtistURL = "\(SpotifyKeys.uriSearch.rawValue)\(artistName.urlEncoded())&type=artist"
-    self.getDataWith(urlString: searchArtistURL, type: .searchArtists, completion: { (result) in
-      switch result {
-      case .success(let data):
-        ParserService<SearchArtistsRoot>.parse(data, completionHandler: { (result) in
+        case .success(let data):
+          ParserService<SpotifyAuth>.parse(data, completionHandler: { (result) in
           switch result {
-          case .success(let searchArtistsRoot):
-            guard let artists = searchArtistsRoot?.artists.items  else {
-              completionHandler(.error("Returned object is not an array of Artist type"))
+          case .success(let auth):
+            guard let spotifyAuth = auth  else {
+              completionHandler(.error("Returned object is not SpotifyAuth type"))
               return
             }
-            completionHandler(.success(artists))
+            UserDefaultsService.saveObject(spotifyAuth)
+            completionHandler(.success(spotifyAuth))
           case .failure(_, let message):
             completionHandler(.error(message))
           }
-        })
+          })
 
-      case .error(let message):
-        ErrorService.sharedInstance.showErrorMessage(message: message)
-        completionHandler(.error(message))
+        case .error(let message):
+          ErrorService.sharedInstance.showErrorMessage(message: message)
+          completionHandler(.error(message))
+        }
+      })
+  }
+
+  public func getArtistsList(artistName: String, completionHandler: @escaping (Result<[Artist]>) -> Void) {
+    checkAuth { (success) in
+      guard success else {
+        completionHandler(.error("Authentification not possible"))
+        return
       }
-    })
+      let searchArtistURL = "\(SpotifyKeys.uriSearch.rawValue)\(artistName.urlEncoded())&type=artist"
+      self.getDataWith(urlString: searchArtistURL, type: .searchArtists, completion: { (result) in
+        switch result {
+        case .success(let data):
+          ParserService<SearchArtistsRoot>.parse(data, completionHandler: { (result) in
+            switch result {
+            case .success(let searchArtistsRoot):
+              guard let artists = searchArtistsRoot?.artists.items  else {
+                completionHandler(.error("Returned object is not an array of Artist type"))
+                return
+              }
+              completionHandler(.success(artists))
+            case .failure(_, let message):
+              completionHandler(.error(message))
+            }
+          })
 
+        case .error(let message):
+          ErrorService.sharedInstance.showErrorMessage(message: message)
+          completionHandler(.error(message))
+        }
+      })
+    }
   }
 
   public func cancelRequests() {
@@ -177,6 +192,21 @@ public final class WebServiceService: WebServiceServiceProtocol {
   }
 
   // MARK: - Private Methods
+  private func checkAuth(completionHandler: @escaping (Bool) -> Void) {
+    guard WebServiceService.sharedInstance.isTokenValid else {
+      WebServiceService.sharedInstance.getAuth { result in
+        switch result {
+        case .success:
+          completionHandler(true)
+        case .error(let message):
+          print(message)
+          completionHandler(false)
+        }
+      }
+      return
+    }
+    completionHandler(true)
+  }
 
   private func getDataWith(urlString: String, type: TypeWebService, completion: @escaping (Result<Data>) -> Void) {
     guard let url = URL(string: urlString) else { return completion(.error("Invalid URL, we can't update your feed")) }
