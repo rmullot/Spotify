@@ -30,7 +30,7 @@ public struct SearchArtists: Codable {
 
 public struct SearchTracksRoot: Codable {
   var tracks: [Track] = []
-  
+
   public init(from decoder: Decoder) throws {
     let values = try decoder.container(keyedBy: CodingKeys.self)
     tracks = try values.decode([Track].self, forKey: .tracks)
@@ -40,7 +40,7 @@ public struct SearchTracksRoot: Codable {
 public struct SearchAlbumsRoot: Codable {
   var href: String = ""
   var items: [Album] = []
-  
+
   public init(from decoder: Decoder) throws {
     let values = try decoder.container(keyedBy: CodingKeys.self)
     href = try values.decode(String.self, forKey: .href)

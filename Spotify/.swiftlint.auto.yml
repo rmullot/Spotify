@@ -1,0 +1,5 @@
+whitelist_rules: # rule identifiers use for autocorrect
+  - trailing_whitespace
+  - colon
+excluded: # paths to ignore during linting. Takes precedence over `included`.
+  - Pods

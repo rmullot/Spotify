@@ -783,7 +783,7 @@
 /* Begin PBXShellScriptBuildPhase section */
 		7AA7CC5621FA166E002DEE1B /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 12;
 			files = (
 			);
 			inputFileListPaths = (
@@ -797,7 +797,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
+			shellScript = "if which ${PODS_ROOT}/SwiftLint/swiftlint >/dev/null; then\n./Pods/SwiftLint/swiftlint autocorrect --config \".swiftlint.auto.yml\" && ./Pods/SwiftLint/swiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 		7AA7CC5721FA1685002DEE1B /* SwiftGen */ = {
 			isa = PBXShellScriptBuildPhase;

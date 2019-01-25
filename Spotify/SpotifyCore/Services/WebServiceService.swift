@@ -24,7 +24,7 @@ public protocol WebServiceServiceProtocol {
 }
 
 public final class WebServiceService: WebServiceServiceProtocol {
-  
+
   // MARK: Attributes
 
   private enum TypeWebService {
@@ -33,7 +33,7 @@ public final class WebServiceService: WebServiceServiceProtocol {
     case searchArtists
     case searchTopTracks
   }
-  
+
   private enum SpotifyKeys: String {
     case uriSearch = "https://api.spotify.com/v1/search?q="
     case uriArtists = "https://api.spotify.com/v1/artists/"
@@ -41,16 +41,16 @@ public final class WebServiceService: WebServiceServiceProtocol {
     case clientID = "62965bb37d4e4733aaf9115e0775d64c"
     case secret = "7a3b7af6325e495f93698996fd6bbf6a"
   }
-  
+
   public var onlineMode: OnlineMode = .online
   public static let sharedInstance = WebServiceService()
-  
+
   private var spotifyAuth: SpotifyAuth?
-  
+
   private var urlSearch = ""
-  
+
   private let marginMessageBox: CGFloat = 20
-  
+
   public var isTokenValid: Bool {
     guard let spotifyAuth = spotifyAuth else { return false }
     return spotifyAuth.isValid
@@ -75,14 +75,14 @@ public final class WebServiceService: WebServiceServiceProtocol {
             completionHandler(.error(message))
           }
         })
-      
+
       case .error(let message):
         ErrorService.sharedInstance.showErrorMessage(message: message)
         completionHandler(.error(message))
       }
     })
   }
-  
+
   public func getAlbumsList(idArtist: String, completionHandler: @escaping (Result<[Album]>) -> Void) {
     let searchAlbumsURL = "\(SpotifyKeys.uriArtists.rawValue)\(idArtist)/albums"
     self.getDataWith(urlString: searchAlbumsURL, type: .searchAlbums, completion: { (result) in
@@ -100,7 +100,7 @@ public final class WebServiceService: WebServiceServiceProtocol {
             completionHandler(.error(message))
           }
         })
-        
+
       case .error(let message):
         ErrorService.sharedInstance.showErrorMessage(message: message)
         completionHandler(.error(message))
@@ -188,7 +188,7 @@ public final class WebServiceService: WebServiceServiceProtocol {
       request.httpBody = bodyParams.data(using: String.Encoding.ascii, allowLossyConversion: true)
       let base64Key = "\(SpotifyKeys.clientID.rawValue):\(SpotifyKeys.secret.rawValue)".toBase64()
       request.addValue("Basic \(base64Key)", forHTTPHeaderField: "Authorization")
-    case .searchArtists,.searchAlbums,.searchTopTracks:
+    case .searchArtists, .searchAlbums, .searchTopTracks:
       request.httpMethod = "GET"
       guard let accessToken = spotifyAuth?.accessToken else { return }
       request.addValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
