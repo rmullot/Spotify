@@ -34,6 +34,14 @@ public final class WebServiceService: WebServiceServiceProtocol {
     case searchTopTracks
   }
 
+  private enum WebServiceErrorMessage: String {
+    case authImpossible = "Authentification not possible"
+    case invalidURL = "Invalid URL, we can't update your feed"
+    case unknownError = "Error from network not identified"
+    case badObjectType = "Returned object is not %@ type"
+    case spotifyAuthInvalid = "spotifyAuth must be valid"
+  }
+
   private enum SpotifyKeys: String {
     case uriSearch = "https://api.spotify.com/v1/search?q="
     case uriArtists = "https://api.spotify.com/v1/artists/"
@@ -61,7 +69,7 @@ public final class WebServiceService: WebServiceServiceProtocol {
   public func getTopTrackList(idArtist: String, completionHandler: @escaping (Result<[Track]>) -> Void) {
     checkAuth { (success) in
         guard success else {
-          completionHandler(.error("Authentification not possible"))
+          completionHandler(.error(WebServiceErrorMessage.authImpossible.rawValue))
           return
         }
         let searchTopTrackURL = "\(SpotifyKeys.uriArtists.rawValue)\(idArtist)/top-tracks?country=FR"
@@ -72,7 +80,7 @@ public final class WebServiceService: WebServiceServiceProtocol {
             switch result {
             case .success(let searchTracksRoot):
               guard let tracks = searchTracksRoot?.tracks  else {
-                completionHandler(.error("Returned object is not an array of Tracks type"))
+                completionHandler(.error(String(format: WebServiceErrorMessage.badObjectType.rawValue, String(describing: [Track].self))))
                 return
               }
               completionHandler(.success(tracks))
@@ -92,7 +100,7 @@ public final class WebServiceService: WebServiceServiceProtocol {
   public func getAlbumsList(idArtist: String, completionHandler: @escaping (Result<[Album]>) -> Void) {
     checkAuth { (success) in
       guard success else {
-        completionHandler(.error("Authentification not possible"))
+        completionHandler(.error(WebServiceErrorMessage.authImpossible.rawValue))
         return
       }
       let searchAlbumsURL = "\(SpotifyKeys.uriArtists.rawValue)\(idArtist)/albums"
@@ -103,7 +111,7 @@ public final class WebServiceService: WebServiceServiceProtocol {
             switch result {
             case .success(let searchAlbumsRoot):
               guard let albums = searchAlbumsRoot?.items  else {
-                completionHandler(.error("Returned object is not an array of Albums type"))
+              completionHandler(.error(String(format: WebServiceErrorMessage.badObjectType.rawValue, String(describing: [Album].self))))
                 return
               }
               completionHandler(.success(albums))
@@ -127,12 +135,13 @@ public final class WebServiceService: WebServiceServiceProtocol {
           ParserService<SpotifyAuth>.parse(data, completionHandler: { (result) in
           switch result {
           case .success(let auth):
-            guard let spotifyAuth = auth  else {
-              completionHandler(.error("Returned object is not SpotifyAuth type"))
+            guard let auth = auth  else {
+              completionHandler(.error(String(format: WebServiceErrorMessage.badObjectType.rawValue, String(describing: SpotifyAuth.self))))
               return
             }
-            UserDefaultsService.saveObject(spotifyAuth)
-            completionHandler(.success(spotifyAuth))
+            self.spotifyAuth = auth
+            UserDefaultsService.saveObject(self.spotifyAuth)
+            completionHandler(.success(auth))
           case .failure(_, let message):
             completionHandler(.error(message))
           }
@@ -148,7 +157,7 @@ public final class WebServiceService: WebServiceServiceProtocol {
   public func getArtistsList(artistName: String, completionHandler: @escaping (Result<[Artist]>) -> Void) {
     checkAuth { (success) in
       guard success else {
-        completionHandler(.error("Authentification not possible"))
+        completionHandler(.error(WebServiceErrorMessage.authImpossible.rawValue))
         return
       }
       let searchArtistURL = "\(SpotifyKeys.uriSearch.rawValue)\(artistName.urlEncoded())&type=artist"
@@ -159,7 +168,7 @@ public final class WebServiceService: WebServiceServiceProtocol {
             switch result {
             case .success(let searchArtistsRoot):
               guard let artists = searchArtistsRoot?.artists.items  else {
-                completionHandler(.error("Returned object is not an array of Artist type"))
+                completionHandler(.error(String(format: WebServiceErrorMessage.badObjectType.rawValue, String(describing: [Artist].self))))
                 return
               }
               completionHandler(.success(artists))
@@ -209,7 +218,7 @@ public final class WebServiceService: WebServiceServiceProtocol {
   }
 
   private func getDataWith(urlString: String, type: TypeWebService, completion: @escaping (Result<Data>) -> Void) {
-    guard let url = URL(string: urlString) else { return completion(.error("Invalid URL, we can't update your feed")) }
+    guard let url = URL(string: urlString) else { return completion(.error(WebServiceErrorMessage.invalidURL.rawValue)) }
     var request = URLRequest(url: url)
     switch type {
     case .authentification:
@@ -220,7 +229,9 @@ public final class WebServiceService: WebServiceServiceProtocol {
       request.addValue("Basic \(base64Key)", forHTTPHeaderField: "Authorization")
     case .searchArtists, .searchAlbums, .searchTopTracks:
       request.httpMethod = "GET"
-      guard let accessToken = spotifyAuth?.accessToken else { return }
+      guard let accessToken = spotifyAuth?.accessToken else {
+        return completion(.error(WebServiceErrorMessage.spotifyAuthInvalid.rawValue))
+      }
       request.addValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
     }
 
@@ -230,10 +241,10 @@ public final class WebServiceService: WebServiceServiceProtocol {
         NetworkActivityService.sharedInstance.requestFinished()
         guard error == nil else {
           return completion(.error(error!.localizedDescription)) }
-        guard let data = data else { return completion(.error(error?.localizedDescription ?? "Error from network not identified")) }
+        guard let data = data else { return completion(.error(error?.localizedDescription ?? WebServiceErrorMessage.unknownError.rawValue)) }
         return completion(.success(data))
       }
-      }.resume()
+    }.resume()
   }
 
   private init() {
