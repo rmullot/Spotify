@@ -7,14 +7,13 @@
 //
 
 import UIKit
+import SpotifyUI
 
-class SearchViewController: UIViewController {
+final class SearchViewController: BaseViewController<SearchViewModel>, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
 
   @IBOutlet weak var messageLabel: UILabel!
   @IBOutlet weak var searchBar: UISearchBar!
   @IBOutlet weak var tableView: UITableView!
-
-  private var viewModel = SearchViewModel()
 
   private let refreshControl = UIRefreshControl()
 
@@ -25,9 +24,13 @@ class SearchViewController: UIViewController {
       self?.refreshControl.endRefreshing()
       self?.tableView.reloadData()
     }
-    self.tableView.accessibilityIdentifier = UITestingIdentifiers.searchViewController.rawValue
-    self.title = "Spotify"
-    self.tableView.register(UINib(nibName: "ArtistCell", bundle: nil), forCellReuseIdentifier: ArtistCell.cellID)
+    tableView.accessibilityIdentifier = UITestingIdentifiers.searchViewController.rawValue
+    searchBar.accessibilityIdentifier = UITestingIdentifiers.searchBar.rawValue
+    searchBar.accessibilityTraits = UIAccessibilityTraits.searchField
+
+    title = "Spotify"
+
+    tableView.registerReusableCell(ArtistCell.self)
     tableView.refreshControl = refreshControl
     refreshControl.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
 
@@ -35,8 +38,8 @@ class SearchViewController: UIViewController {
 
   private func viewModelPropertyChanged(_ key: String) {
     switch key {
-    case SearchViewModel.PropertyKeys.statusMessage.rawValue:
-      messageLabel.text = viewModel.statusMessage
+    case SearchViewModel.PropertyKeys.errorMessage.rawValue:
+         messageLabel.text = viewModel.errorMessage
     default:
       break
     }
@@ -46,11 +49,41 @@ class SearchViewController: UIViewController {
     viewModel.getArtistsInformations(searchKeyWord: searchBar.text ?? "")
   }
 
-}
+  // MARK: - UITableViewDataSource
 
-// MARK: - UISearchBarDelegate
+  func numberOfSections(in tableView: UITableView) -> Int {
+    return 1
+  }
 
-extension SearchViewController: UISearchBarDelegate {
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    tableView.isHidden = viewModel.noResults
+    if viewModel.noResults {
+      viewModel.rebootStatusMessage()
+    }
+    return viewModel.artistsCount
+  }
+
+  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    let cell = tableView.dequeueReusableCell(ArtistCell.self, indexPath: indexPath)
+    cell.viewModel = viewModel.getArtistViewModel(index: indexPath.row)
+    return cell
+  }
+
+  func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    return UITableView.automaticDimension
+  }
+
+  func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+    return 1
+  }
+
+  // MARK: - UITableViewDelegate
+
+  func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+    return UIView()
+  }
+
+  // MARK: - UISearchBarDelegate
 
   func searchBar(_ searchBar: UISearchBar, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
     return viewModel.isValidSearch(text)
@@ -72,44 +105,5 @@ extension SearchViewController: UISearchBarDelegate {
   func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
     viewModel.getArtistsInformations(searchKeyWord: searchBar.text ?? "")
     searchBar.resignFirstResponder()
-  }
-}
-
-// MARK: - UITableViewDataSource
-
-extension SearchViewController: UITableViewDataSource {
-
-  func numberOfSections(in tableView: UITableView) -> Int {
-    return 1
-  }
-
-  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    tableView.isHidden = viewModel.noResults
-    return viewModel.artistsCount
-  }
-
-  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    if let cell = tableView.dequeueReusableCell(withIdentifier: ArtistCell.cellID, for: indexPath) as? ArtistCell {
-      cell.viewModel = viewModel.getArtistViewModel(index: indexPath.row)
-      return cell
-    }
-    return UITableViewCell()
-  }
-
-  func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-    return UITableView.automaticDimension
-  }
-
-  func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-    return 1
-  }
-
-}
-
-// MARK: - UITableViewDelegate
-extension SearchViewController: UITableViewDelegate {
-
-  func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-    return UIView()
   }
 }

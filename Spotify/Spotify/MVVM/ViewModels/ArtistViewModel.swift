@@ -9,7 +9,7 @@
 import Foundation
 import SpotifyCore
 
-class ArtistViewModel {
+final class ArtistViewModel {
 
   private var artist: Artist?
 

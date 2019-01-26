@@ -15,7 +15,7 @@ public protocol BaseViewModelProtocol {
     var propertyChanged: PropertyChangedClosure? {get set}
 }
 
-public class BaseViewModel: BaseViewModelProtocol {
+open class BaseViewModel: BaseViewModelProtocol {
 
   required public init() { }
 
@@ -26,19 +26,19 @@ public class BaseViewModel: BaseViewModelProtocol {
       case isValid
   }
 
-  public var isValid: Bool {
+  open var isValid: Bool {
     return false
   }
 
-  public var propertyChanged: PropertyChangedClosure?
+  open var propertyChanged: PropertyChangedClosure?
 
-  public var errorMessage: String = "" {
+  open var errorMessage: String = "" {
     didSet {
         propertyChanged?(PropertyNames.errorMessage.rawValue)
     }
   }
 
-  public func validate() {
+  open func validate() {
     if isValid { propertyChanged?(PropertyNames.isValid.rawValue) }
   }
 }

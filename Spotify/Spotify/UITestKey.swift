@@ -10,4 +10,6 @@ import Foundation
 
 enum UITestingIdentifiers: String {
   case searchViewController
+  case searchBar
+  case descriptionViewController
 }

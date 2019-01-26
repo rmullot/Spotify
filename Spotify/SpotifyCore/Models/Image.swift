@@ -13,6 +13,7 @@ public struct Image: Codable {
   public var url: String = ""
   public var width: Int = 0
 
+  public init() { }
   public init(from decoder: Decoder) throws {
     let values = try decoder.container(keyedBy: CodingKeys.self)
     height = try values.decode(Int.self, forKey: .height)

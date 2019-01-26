@@ -15,7 +15,7 @@
                 <outlet property="messageLabel" destination="4kB-b1-GLS" id="NLn-Jn-FPq"/>
                 <outlet property="searchBar" destination="TxA-FD-tGn" id="ey1-op-jts"/>
                 <outlet property="tableView" destination="oRr-dZ-tof" id="5cC-HN-jaF"/>
-                <outlet property="view" destination="ImV-Wq-36x" id="8pJ-aK-C0o"/>
+                <outlet property="view" destination="ImV-Wq-36x" id="H0C-eG-6hk"/>
             </connections>
         </placeholder>
         <view contentMode="scaleToFill" id="ImV-Wq-36x">
@@ -51,6 +51,9 @@
                 </tableView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <accessibility key="accessibilityConfiguration">
+                <bool key="isElement" value="YES"/>
+            </accessibility>
             <constraints>
                 <constraint firstItem="4kB-b1-GLS" firstAttribute="top" secondItem="TxA-FD-tGn" secondAttribute="bottom" id="F11-o8-qLt"/>
                 <constraint firstItem="TxA-FD-tGn" firstAttribute="trailing" secondItem="KgP-br-Ia8" secondAttribute="trailing" id="GWi-9Q-1Nz"/>

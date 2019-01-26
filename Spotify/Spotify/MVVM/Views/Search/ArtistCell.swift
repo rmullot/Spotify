@@ -10,7 +10,7 @@ import UIKit
 
 final class ArtistCell: UITableViewCell {
 
-    static let cellID = "ArtistCell"
+    private let placeholder = UIImage(named: "placeholder")
 
     @IBOutlet weak var genreLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
@@ -18,7 +18,7 @@ final class ArtistCell: UITableViewCell {
 
     weak var viewModel: ArtistViewModel! {
         didSet {
-            self.photoImageview.loadImageWithUrl(viewModel.getImageURL(width: Int(self.photoImageview.frame.size.width)), placeHolder: UIImage(named: "placeholder"))
+            self.photoImageview.loadImageWithUrl(viewModel.getImageURL(width: Int(self.photoImageview.frame.size.width)), placeHolder: placeholder)
             self.nameLabel.text = viewModel.name
             self.genreLabel.text = viewModel.genres
         }
@@ -26,7 +26,7 @@ final class ArtistCell: UITableViewCell {
 
   override func prepareForReuse() {
     super.prepareForReuse()
-    photoImageview.image = UIImage(named: "placeholder")
+    photoImageview.image = placeholder
     nameLabel.text = ""
     genreLabel.text = ""
   }

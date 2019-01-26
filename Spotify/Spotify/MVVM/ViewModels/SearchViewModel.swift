@@ -8,23 +8,15 @@
 
 import Foundation
 import SpotifyCore
+import SpotifyUI
 
-class SearchViewModel {
-
-  var propertyChanged:((_ key: String) -> Void)?
+final class SearchViewModel: BaseViewModel {
 
   enum PropertyKeys: String {
-    case statusMessage
+    case errorMessage
   }
 
   private var artists: [Artist]?
-  private var searchKeyWord: String = ""
-
-  private(set)var statusMessage: String = "" {
-    didSet {
-      propertyChanged?(PropertyKeys.statusMessage.rawValue)
-    }
-  }
 
   var artistsDidChange: ((SearchViewModel) -> Void)?
 
@@ -37,19 +29,17 @@ class SearchViewModel {
   }
 
   func getArtistsInformations(searchKeyWord: String) {
-//    if self.searchKeyWord != searchKeyWord {
       self.artists = nil
-      self.searchKeyWord = searchKeyWord
-
       WebServiceService.sharedInstance.getArtistsList(artistName: searchKeyWord) { (result) in
         switch result {
         case .success(let artists):
           self.artists = artists
           self.artistsDidChange?(self)
         case .error(let message):
-          self.statusMessage = message
+          self.errorMessage = message
+          self.artists = []
+          self.artistsDidChange?(self)
         }
-//      }
     }
 
   }
@@ -60,7 +50,7 @@ class SearchViewModel {
   }
 
   func rebootStatusMessage() {
-    statusMessage = "No results available"
+    errorMessage = L10n.noResults
   }
 
   func isValidSearch(_ text: String) -> Bool {
