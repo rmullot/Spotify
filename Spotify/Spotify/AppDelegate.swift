@@ -17,6 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
     // Override point for customization after application launch.
+    // 5LfGQac0EIXyAN8aUwmNAQ
     WebServiceService.sharedInstance.getArtistsList(artistName: "the offspring") { (result) in
       switch result {
       case .success(let artists):
@@ -25,6 +26,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print(message)
       }
     }
+
+//    WebServiceService.sharedInstance.getTopTrackList(idArtist: "5LfGQac0EIXyAN8aUwmNAQ") { (result) in
+//      switch result {
+//      case .success(let artists):
+//        print(artists)
+//      case .error(let message):
+//        print(message)
+//      }
+//    }
 
     return true
   }
