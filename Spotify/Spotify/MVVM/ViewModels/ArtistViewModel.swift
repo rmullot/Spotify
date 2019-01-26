@@ -18,13 +18,12 @@ class ArtistViewModel {
   }
 
   var genres: String {
-    return artist?.genres.joined(separator: ",") ?? ""
+    return artist?.genres.joined(separator: ", ") ?? ""
   }
 
-  //TODO: to upgrade to take the good image
-  var imageURL: String {
+  func getImageURL(width: Int) -> String {
       guard let images = self.artist?.images, images.isNotEmpty else { return "" }
-      return images[0].url
+    return Image.getBestPicture(images: images, width: width)
   }
 
   private init() { }

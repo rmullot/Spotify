@@ -284,6 +284,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		7A22638721FCB79300C76F96 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				7AA7CC0D21FA0F84002DEE1B /* Xibs */,
+				7AC37F1221FC9A7C0068C323 /* ArtistCell.swift */,
+				7AC37EF921FC7B7B0068C323 /* SearchViewController.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
 		7AA7CBCF21FA0F5C002DEE1B = {
 			isa = PBXGroup;
 			children = (
@@ -365,9 +375,8 @@
 		7AA7CC0B21FA0F74002DEE1B /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				7AC37F1221FC9A7C0068C323 /* ArtistCell.swift */,
-				7AA7CC0D21FA0F84002DEE1B /* Xibs */,
-				7AC37EF921FC7B7B0068C323 /* SearchViewController.swift */,
+				7AA7CC8821FC78CA002DEE1B /* Launch Screen.storyboard */,
+				7A22638721FCB79300C76F96 /* Search */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -376,7 +385,6 @@
 			isa = PBXGroup;
 			children = (
 				7AC37F0B21FC96000068C323 /* ArtistCell.xib */,
-				7AA7CC8821FC78CA002DEE1B /* Launch Screen.storyboard */,
 				7AC37EF721FC7B620068C323 /* SearchViewController.xib */,
 			);
 			path = Xibs;

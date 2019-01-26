@@ -21,18 +21,16 @@ class SearchViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     viewModel.propertyChanged = { [weak self] key in self?.viewModelPropertyChanged(key) }
-
-    messageLabel.layer.shadowColor = UIColor.black.cgColor
-    messageLabel.layer.shadowRadius = 1.0
-    messageLabel.layer.shadowOpacity = 1.0
-    messageLabel.layer.shadowOffset = CGSize(width: 2, height: 2)
-    messageLabel.layer.masksToBounds = false
-
+    viewModel.artistsDidChange = { [weak self] viewModel in
+      self?.refreshControl.endRefreshing()
+      self?.tableView.reloadData()
+    }
     self.tableView.accessibilityIdentifier = UITestingIdentifiers.searchViewController.rawValue
     self.title = "Spotify"
     self.tableView.register(UINib(nibName: "ArtistCell", bundle: nil), forCellReuseIdentifier: ArtistCell.cellID)
     tableView.refreshControl = refreshControl
     refreshControl.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
+
   }
 
   private func viewModelPropertyChanged(_ key: String) {
@@ -70,6 +68,11 @@ extension SearchViewController: UISearchBarDelegate {
     viewModel.rebootStatusMessage()
     searchBar.resignFirstResponder()
   }
+
+  func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+    viewModel.getArtistsInformations(searchKeyWord: searchBar.text ?? "")
+    searchBar.resignFirstResponder()
+  }
 }
 
 // MARK: - UITableViewDataSource
@@ -81,6 +84,7 @@ extension SearchViewController: UITableViewDataSource {
   }
 
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    tableView.isHidden = viewModel.noResults
     return viewModel.artistsCount
   }
 

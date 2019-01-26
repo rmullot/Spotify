@@ -26,12 +26,18 @@ class SearchViewModel {
     }
   }
 
+  var artistsDidChange: ((SearchViewModel) -> Void)?
+
   var artistsCount: Int {
     return artists?.count ?? 0
   }
 
+  var noResults: Bool {
+    return artists?.isEmpty ?? true
+  }
+
   func getArtistsInformations(searchKeyWord: String) {
-    if self.searchKeyWord != searchKeyWord {
+//    if self.searchKeyWord != searchKeyWord {
       self.artists = nil
       self.searchKeyWord = searchKeyWord
 
@@ -39,10 +45,11 @@ class SearchViewModel {
         switch result {
         case .success(let artists):
           self.artists = artists
+          self.artistsDidChange?(self)
         case .error(let message):
           self.statusMessage = message
         }
-      }
+//      }
     }
 
   }

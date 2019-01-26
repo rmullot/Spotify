@@ -10,7 +10,7 @@ import UIKit
 
 final class ArtistCell: UITableViewCell {
 
-    static let cellID = "ForecastInfoCellID"
+    static let cellID = "ArtistCell"
 
     @IBOutlet weak var genreLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
@@ -18,11 +18,18 @@ final class ArtistCell: UITableViewCell {
 
     weak var viewModel: ArtistViewModel! {
         didSet {
-            self.photoImageview.loadImageWithUrl(viewModel.imageURL, placeHolder: UIImage(named: "placeholder"))
+            self.photoImageview.loadImageWithUrl(viewModel.getImageURL(width: Int(self.photoImageview.frame.size.width)), placeHolder: UIImage(named: "placeholder"))
             self.nameLabel.text = viewModel.name
             self.genreLabel.text = viewModel.genres
         }
     }
+
+  override func prepareForReuse() {
+    super.prepareForReuse()
+    photoImageview.image = UIImage(named: "placeholder")
+    nameLabel.text = ""
+    genreLabel.text = ""
+  }
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
