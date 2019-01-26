@@ -3,5 +3,7 @@ whitelist_rules: # rule identifiers use for autocorrect
   - colon
   - comma
   - vertical_whitespace
+  - mark
+  - void_return
 excluded: # paths to ignore during linting. Takes precedence over `included`.
   - Pods

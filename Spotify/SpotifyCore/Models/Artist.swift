@@ -9,10 +9,10 @@
 import Foundation
 
 public struct Artist: Codable {
-  var idArtist: String = ""
-  var name: String = ""
-  var images: [Image] = []
-  var genres: [String] = []
+  public var idArtist: String = ""
+  public var name: String = ""
+  public var images: [Image] = []
+  public var genres: [String] = []
 
   enum CodingKeys: String, CodingKey {
     case idArtist = "id"
@@ -20,6 +20,7 @@ public struct Artist: Codable {
     case images = "images"
     case genres = "genres"
   }
+  public init() { }
 
   public init(from decoder: Decoder) throws {
     let values = try decoder.container(keyedBy: CodingKeys.self)

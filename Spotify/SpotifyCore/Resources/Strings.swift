@@ -19,6 +19,8 @@ public enum L10n {
   public static let errorUnavailableNetwork = L10n.tr("Localizable", "errorUnavailableNetwork")
   /// Network available
   public static let networkAvailableMessage = L10n.tr("Localizable", "networkAvailableMessage")
+  /// No results available
+  public static let noResults = L10n.tr("Localizable", "noResults")
   /// No
   public static let noTitle = L10n.tr("Localizable", "noTitle")
   /// OK

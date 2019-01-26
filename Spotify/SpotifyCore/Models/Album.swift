@@ -9,9 +9,9 @@
 import Foundation
 
 public struct Album: Codable {
-  var idAlbum: String = ""
-  var name: String = ""
-  var images: [Image] = []
+  public var idAlbum: String = ""
+  public var name: String = ""
+  public var images: [Image] = []
 
   enum CodingKeys: String, CodingKey {
     case idAlbum = "id"

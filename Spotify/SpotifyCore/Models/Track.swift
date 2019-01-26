@@ -9,8 +9,8 @@
 import Foundation
 
 public struct Track: Codable {
-  var idTrack: String = ""
-  var name: String = ""
+  public var idTrack: String = ""
+  public var name: String = ""
 
   enum CodingKeys: String, CodingKey {
     case idTrack = "id"

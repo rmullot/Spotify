@@ -11,8 +11,6 @@ target 'Spotify' do
   pod 'SwiftMessages', '~> 6.0.2'
   pod 'ReachabilitySwift', '~> 4.3.0'
   pod 'SwiftGen', '~> 6.0.2'
-  pod 'Kingfisher', '~> 5.1.0'
-
 end
 
 target 'SpotifyTests' do
@@ -38,7 +36,8 @@ target 'SpotifyUI' do
   use_frameworks!
   
   # Pods for SpotifyUI
-
+  pod 'AlamofireImage', '~> 3.5.0'
+  pod 'RxSwift', '~> 4.4.0'
 end
 
 post_install do |installer|
