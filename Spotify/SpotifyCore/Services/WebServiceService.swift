@@ -64,7 +64,7 @@ public final class WebServiceService: WebServiceServiceProtocol {
           completionHandler(.error("Authentification not possible"))
           return
         }
-        let searchTopTrackURL = "\(SpotifyKeys.uriArtists.rawValue)\(idArtist)/top-tracks"
+        let searchTopTrackURL = "\(SpotifyKeys.uriArtists.rawValue)\(idArtist)/top-tracks?country=FR"
         self.getDataWith(urlString: searchTopTrackURL, type: .searchTopTracks, completion: { (result) in
         switch result {
         case .success(let data):
