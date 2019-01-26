@@ -9,9 +9,9 @@
 import Foundation
 
 public struct Image: Codable {
-  var height: Int = 0
-  var url: String = ""
-  var width: Int = 0
+  public var height: Int = 0
+  public var url: String = ""
+  public var width: Int = 0
 
   public init(from decoder: Decoder) throws {
     let values = try decoder.container(keyedBy: CodingKeys.self)

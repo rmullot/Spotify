@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ForecastInfoCellID" rowHeight="70" id="NQa-kM-QFn" customClass="ForecastInfoCell" customModule="WeatherSwift" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="NQa-kM-QFn" id="Oqm-qp-Ggc">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="99.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Temperature" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hhP-Rq-7Jy">
+                        <rect key="frame" x="100" y="66.5" width="249" height="24"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="24" id="Fau-tE-BS0"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YBj-gS-GR7">
+                        <rect key="frame" x="10" y="10.5" width="80" height="80"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="80" id="Gb0-Fp-JkR"/>
+                            <constraint firstAttribute="width" constant="80" id="eZY-f7-c9t"/>
+                        </constraints>
+                    </imageView>
+                    <label userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4mS-7x-h9t">
+                        <rect key="frame" x="100" y="10.5" width="269" height="48"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="48" id="5hK-Ae-wrs"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="YBj-gS-GR7" firstAttribute="top" secondItem="Oqm-qp-Ggc" secondAttribute="top" constant="10" id="Br2-GE-mJZ"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="hhP-Rq-7Jy" secondAttribute="trailing" constant="10" id="KPa-X7-hNP"/>
+                    <constraint firstItem="YBj-gS-GR7" firstAttribute="leading" secondItem="Oqm-qp-Ggc" secondAttribute="leading" constant="10" id="KV7-MG-zp6"/>
+                    <constraint firstItem="4mS-7x-h9t" firstAttribute="trailing" secondItem="Oqm-qp-Ggc" secondAttribute="trailingMargin" constant="10" id="LqW-ed-0cX"/>
+                    <constraint firstItem="hhP-Rq-7Jy" firstAttribute="bottom" secondItem="YBj-gS-GR7" secondAttribute="bottom" id="SVQ-fo-p6D"/>
+                    <constraint firstItem="4mS-7x-h9t" firstAttribute="top" secondItem="YBj-gS-GR7" secondAttribute="top" id="X6b-kG-isX"/>
+                    <constraint firstItem="YBj-gS-GR7" firstAttribute="centerY" secondItem="Oqm-qp-Ggc" secondAttribute="centerY" id="e3q-Ci-n0H"/>
+                    <constraint firstItem="4mS-7x-h9t" firstAttribute="leading" secondItem="YBj-gS-GR7" secondAttribute="trailing" constant="10" id="h9v-w7-QNQ"/>
+                    <constraint firstItem="hhP-Rq-7Jy" firstAttribute="leading" secondItem="YBj-gS-GR7" secondAttribute="trailing" constant="10" id="pBU-fj-wwF"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="dateLabel" destination="4mS-7x-h9t" id="H2b-OV-I0b"/>
+                <outlet property="photoImageview" destination="YBj-gS-GR7" id="1Kd-7f-gag"/>
+                <outlet property="temperatureLabel" destination="hhP-Rq-7Jy" id="asc-od-R2Z"/>
+            </connections>
+            <point key="canvasLocation" x="56.799999999999997" y="-99.850074962518747"/>
+        </tableViewCell>
+    </objects>
+</document>

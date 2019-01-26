@@ -10,14 +10,14 @@ import Foundation
 
 extension String {
 
-  func fromBase64() -> String {
+  public func fromBase64() -> String {
     guard let data = Data(base64Encoded: self), let result = String(data: data, encoding: .utf8) else {
       return ""
     }
     return result
   }
 
-  func toBase64() -> String {
+  public func toBase64() -> String {
     return Data(self.utf8).base64EncodedString()
   }
 
@@ -26,7 +26,15 @@ extension String {
     return !self.isEmpty
   }
 
-  func urlEncoded() -> String {
+  public func isUrl(_ completionHandler: @escaping (Bool, URL?) -> Void ) {
+    guard self.isNotEmpty, let url = URL(string: self) else {
+      return completionHandler(false, nil)
+    }
+    return completionHandler(UIApplication.shared.canOpenURL(url), url)
+
+  }
+
+  public func urlEncoded() -> String {
     return self.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? ""
   }
 }
