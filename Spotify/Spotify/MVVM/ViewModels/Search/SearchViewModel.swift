@@ -29,23 +29,28 @@ final class SearchViewModel: BaseViewModel {
   }
 
   func getArtistsInformations(searchKeyWord: String) {
-      self.artists = nil
-      WebServiceService.sharedInstance.getArtistsList(artistName: searchKeyWord) { (result) in
-        switch result {
-        case .success(let artists):
-          self.artists = artists
-          self.artistsDidChange?(self)
-        case .error(let message):
-          self.errorMessage = message
-          self.artists = []
-          self.artistsDidChange?(self)
-        }
+    self.artists = nil
+    WebServiceService.sharedInstance.getArtistsList(artistName: searchKeyWord) { (result) in
+      switch result {
+      case .success(let artists):
+        self.artists = artists
+        self.artistsDidChange?(self)
+      case .error(let message):
+        self.errorMessage = message
+        self.artists = []
+        self.artistsDidChange?(self)
+      }
     }
 
   }
 
+  func displayDescription(index: Int) {
+    guard let artists = artists, artists.isValidIndex(index) else { return }
+    NavigationService.sharedInstance.navigateToDescription(artist: artists[index])
+  }
+
   func getArtistViewModel(index: Int) -> ArtistViewModel? {
-    guard let artists = artists, artists.isNotEmpty, index < artists.count, index >= 0   else { return nil }
+    guard let artists = artists, artists.isValidIndex(index) else { return nil }
     return ArtistViewModel(artist: artists[index])
   }
 

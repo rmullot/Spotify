@@ -68,12 +68,12 @@ public final class WebServiceService: WebServiceServiceProtocol {
 
   public func getTopTrackList(idArtist: String, completionHandler: @escaping (Result<[Track]>) -> Void) {
     checkAuth { (success) in
-        guard success else {
-          completionHandler(.error(WebServiceErrorMessage.authImpossible.rawValue))
-          return
-        }
-        let searchTopTrackURL = "\(SpotifyKeys.uriArtists.rawValue)\(idArtist)/top-tracks?country=FR"
-        self.getDataWith(urlString: searchTopTrackURL, type: .searchTopTracks, completion: { (result) in
+      guard success else {
+        completionHandler(.error(WebServiceErrorMessage.authImpossible.rawValue))
+        return
+      }
+      let searchTopTrackURL = "\(SpotifyKeys.uriArtists.rawValue)\(idArtist)/top-tracks?country=FR"
+      self.getDataWith(urlString: searchTopTrackURL, type: .searchTopTracks, completion: { (result) in
         switch result {
         case .success(let data):
           ParserService<SearchTracksRoot>.parse(data, completionHandler: { (result) in
@@ -111,7 +111,7 @@ public final class WebServiceService: WebServiceServiceProtocol {
             switch result {
             case .success(let searchAlbumsRoot):
               guard let albums = searchAlbumsRoot?.items  else {
-              completionHandler(.error(String(format: WebServiceErrorMessage.badObjectType.rawValue, String(describing: [Album].self))))
+                completionHandler(.error(String(format: WebServiceErrorMessage.badObjectType.rawValue, String(describing: [Album].self))))
                 return
               }
               completionHandler(.success(albums))
@@ -129,10 +129,10 @@ public final class WebServiceService: WebServiceServiceProtocol {
   }
 
   public func getAuth(completionHandler:@escaping (Result<SpotifyAuth>) -> Void) {
-      getDataWith(urlString: SpotifyKeys.authURL.rawValue, type: .authentification, completion: { (result) in
-        switch result {
-        case .success(let data):
-          ParserService<SpotifyAuth>.parse(data, completionHandler: { (result) in
+    getDataWith(urlString: SpotifyKeys.authURL.rawValue, type: .authentification, completion: { (result) in
+      switch result {
+      case .success(let data):
+        ParserService<SpotifyAuth>.parse(data, completionHandler: { (result) in
           switch result {
           case .success(let auth):
             guard let auth = auth  else {
@@ -145,13 +145,13 @@ public final class WebServiceService: WebServiceServiceProtocol {
           case .failure(_, let message):
             completionHandler(.error(message))
           }
-          })
+        })
 
-        case .error(let message):
-          ErrorService.sharedInstance.showErrorMessage(message: message)
-          completionHandler(.error(message))
-        }
-      })
+      case .error(let message):
+        ErrorService.sharedInstance.showErrorMessage(message: message)
+        completionHandler(.error(message))
+      }
+    })
   }
 
   public func getArtistsList(artistName: String, completionHandler: @escaping (Result<[Artist]>) -> Void) {
@@ -244,7 +244,7 @@ public final class WebServiceService: WebServiceServiceProtocol {
         guard let data = data else { return completion(.error(error?.localizedDescription ?? WebServiceErrorMessage.unknownError.rawValue)) }
         return completion(.success(data))
       }
-    }.resume()
+      }.resume()
   }
 
   private init() {

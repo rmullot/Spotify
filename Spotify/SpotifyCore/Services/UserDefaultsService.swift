@@ -31,7 +31,7 @@ public final class UserDefaultsService: UserDefaultsServiceProtocol {
   }
 
   public static func removeObject<T>(_ object: T) where T: Codable {
-      UserDefaults.standard.removeObject(forKey: String(describing: object.self))
+    UserDefaults.standard.removeObject(forKey: String(describing: object.self))
   }
 
   private init() {}

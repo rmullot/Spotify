@@ -10,10 +10,10 @@ import UIKit
 
 class TopTracksHeader: UITableViewHeaderFooterView {
 
-    @IBOutlet weak var titleLabel: UILabel!
+  @IBOutlet weak var titleLabel: UILabel!
 
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
+  required init?(coder aDecoder: NSCoder) {
+    super.init(coder: aDecoder)
+  }
 
 }

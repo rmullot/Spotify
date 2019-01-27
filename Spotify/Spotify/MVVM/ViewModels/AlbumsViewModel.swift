@@ -24,7 +24,7 @@ final class AlbumsViewModel: BaseViewModel {
   }
 
   func getAlbumViewModel(index: Int) -> AlbumViewModel? {
-    guard let albums = albums, albums.isNotEmpty, index < albums.count, index >= 0   else { return nil }
+    guard let albums = albums, albums.isValidIndex(index) else { return nil }
     return AlbumViewModel(album: albums[index])
   }
 }

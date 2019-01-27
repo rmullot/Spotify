@@ -39,7 +39,7 @@ final class SearchViewController: BaseViewController<SearchViewModel>, UITableVi
   private func viewModelPropertyChanged(_ key: String) {
     switch key {
     case SearchViewModel.PropertyKeys.errorMessage.rawValue:
-         messageLabel.text = viewModel.errorMessage
+      messageLabel.text = viewModel.errorMessage
     default:
       break
     }
@@ -81,6 +81,10 @@ final class SearchViewController: BaseViewController<SearchViewModel>, UITableVi
 
   func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
     return UIView()
+  }
+
+  public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    viewModel.displayDescription(index: indexPath.row)
   }
 
   // MARK: - UISearchBarDelegate

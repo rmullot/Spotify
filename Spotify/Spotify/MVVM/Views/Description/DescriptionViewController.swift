@@ -12,7 +12,6 @@ import SpotifyCore
 final class DescriptionViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
 
   fileprivate enum DescriptionTypeCell: Int {
-    case artistInfo = 0
     case topTracks
     case albums
 
@@ -25,7 +24,6 @@ final class DescriptionViewController: UIViewController, UICollectionViewDelegat
 
   @IBOutlet weak var collectionView: UICollectionView!
   private var heightMenuTopTracks: CGFloat = 1000.0
-  private let heightFooter: CGFloat = 74.0
 
   var viewModel: DescriptionViewModel! {
     didSet {
@@ -67,13 +65,13 @@ final class DescriptionViewController: UIViewController, UICollectionViewDelegat
 
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     switch indexPath.row {
-    case DescriptionTypeCell.albums.rawValue:
-      let cell = self.collectionView.dequeueReusableCell(AlbumsCell.self, indexPath: indexPath)
-      cell.viewModel = self.viewModel.getAlbumsViewModel()
-      return cell
     case DescriptionTypeCell.topTracks.rawValue:
       let cell = self.collectionView.dequeueReusableCell(TopTracksCell.self, indexPath: indexPath)
       cell.viewModel = viewModel.getTopTracksViewModel()
+      return cell
+    case DescriptionTypeCell.albums.rawValue:
+      let cell = self.collectionView.dequeueReusableCell(AlbumsCell.self, indexPath: indexPath)
+      cell.viewModel = self.viewModel.getAlbumsViewModel()
       return cell
     default:
       break
@@ -92,13 +90,19 @@ final class DescriptionViewController: UIViewController, UICollectionViewDelegat
 
   func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
     if kind == UICollectionView.elementKindSectionHeader {
-      return collectionView.dequeueReusableHeader(ArtistHeader.self, indexPath: indexPath)
+      let header = collectionView.dequeueReusableHeader(ArtistHeader.self, indexPath: indexPath)
+      header.viewModel = viewModel.getArtistViewModel()
+      return header
     }
     return UICollectionReusableView()
   }
 
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+    return CGSize(width: UIScreen.main.bounds.size.width, height: ArtistHeader.heightDefault)
+  }
+
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
-    return CGSize(width: UIScreen.main.bounds.size.width, height: heightFooter)
+    return CGSize(width: UIScreen.main.bounds.size.width, height: 1)
   }
 
   override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -113,8 +117,6 @@ extension DescriptionViewController: UICollectionViewDelegateFlowLayout {
     if indexPath.row < DescriptionTypeCell.count {
       let width = UIScreen.main.bounds.size.width
       switch indexPath.row {
-      case DescriptionTypeCell.artistInfo.rawValue:
-        size = CGSize(width: width, height: ArtistHeader.heightDefault)
       case DescriptionTypeCell.topTracks.rawValue:
         if heightMenuTopTracks == 0 {
           heightMenuTopTracks = 1000.0

@@ -12,10 +12,14 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="6sm-Un-B9I" customClass="ArtistHeader" customModule="Spotify" customModuleProvider="target">
+        <view contentMode="scaleToFill" restorationIdentifier="ArtistHeader" id="6sm-Un-B9I" customClass="ArtistHeader" customModule="Spotify" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e68-mi-6zW">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </view>
                 <label userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Genre" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ib3-pd-pay">
                     <rect key="frame" x="100" y="54" width="265" height="36"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -50,13 +54,16 @@
                     </userDefinedRuntimeAttributes>
                 </imageView>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
+                <constraint firstAttribute="bottom" secondItem="e68-mi-6zW" secondAttribute="bottom" id="4P4-BK-VKD"/>
                 <constraint firstItem="kbp-JD-Xei" firstAttribute="leading" secondItem="3BD-lc-6Sq" secondAttribute="trailing" constant="10" id="7P5-sx-b56"/>
                 <constraint firstItem="IBj-cg-9bV" firstAttribute="trailing" secondItem="kbp-JD-Xei" secondAttribute="trailing" constant="10" id="ORH-BL-7xB"/>
                 <constraint firstItem="3BD-lc-6Sq" firstAttribute="centerY" secondItem="6sm-Un-B9I" secondAttribute="centerY" id="Rue-zj-Oo3"/>
                 <constraint firstItem="3BD-lc-6Sq" firstAttribute="leading" secondItem="IBj-cg-9bV" secondAttribute="leading" constant="10" id="V1e-Gi-nmL"/>
                 <constraint firstItem="Ib3-pd-pay" firstAttribute="bottom" secondItem="3BD-lc-6Sq" secondAttribute="bottom" id="VAj-Ti-9yf"/>
+                <constraint firstItem="IBj-cg-9bV" firstAttribute="trailing" secondItem="e68-mi-6zW" secondAttribute="trailing" id="W6m-n4-68C"/>
+                <constraint firstItem="e68-mi-6zW" firstAttribute="top" secondItem="IBj-cg-9bV" secondAttribute="top" id="hId-R0-a7q"/>
+                <constraint firstItem="e68-mi-6zW" firstAttribute="leading" secondItem="IBj-cg-9bV" secondAttribute="leading" id="iRd-g1-fGX"/>
                 <constraint firstItem="kbp-JD-Xei" firstAttribute="top" secondItem="3BD-lc-6Sq" secondAttribute="top" id="iuw-Wj-aWi"/>
                 <constraint firstItem="IBj-cg-9bV" firstAttribute="trailing" secondItem="Ib3-pd-pay" secondAttribute="trailing" constant="10" id="sXL-c4-6aF"/>
                 <constraint firstItem="Ib3-pd-pay" firstAttribute="leading" secondItem="3BD-lc-6Sq" secondAttribute="trailing" constant="10" id="wxo-wx-WJT"/>

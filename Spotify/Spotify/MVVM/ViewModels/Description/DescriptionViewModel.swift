@@ -24,13 +24,18 @@ final class DescriptionViewModel {
     self.artist = artist
   }
 
-  func getTopTracksViewModel() -> TopTracksViewModel? {
-    guard let topTracks = topTracks, topTracks.isNotEmpty else { return nil }
+  func getArtistViewModel() -> ArtistViewModel? {
+    guard let artist = artist else { return nil }
+    return ArtistViewModel(artist: artist)
+  }
+
+  func getTopTracksViewModel() -> TopTracksViewModel {
+    guard let topTracks = topTracks, topTracks.isNotEmpty else { return TopTracksViewModel(tracks: []) }
     return TopTracksViewModel(tracks: topTracks)
   }
 
-  func getAlbumsViewModel() -> AlbumsViewModel? {
-    guard let albums = albums, albums.isNotEmpty else { return nil }
+  func getAlbumsViewModel() -> AlbumsViewModel {
+    guard let albums = albums, albums.isNotEmpty else { return AlbumsViewModel(albums: []) }
     return AlbumsViewModel(albums: albums)
   }
 

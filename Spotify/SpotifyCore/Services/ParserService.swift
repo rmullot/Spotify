@@ -9,15 +9,15 @@
 import Foundation
 
 public enum ParserResult<T> where T: Codable {
-    case success(T?)
-    case failure(Swift.Error, String)
+  case success(T?)
+  case failure(Swift.Error, String)
 }
 
 public enum ParserError: Error {
-    case decodeObject
-    case spotifyError
-    case unavailableAPI
-    case unknownObject
+  case decodeObject
+  case spotifyError
+  case unavailableAPI
+  case unknownObject
 }
 
 public typealias ParserCallback<T> = (ParserResult<T>) -> Void where T: Codable
@@ -32,7 +32,7 @@ public final class ParserService<T>: ParserServiceProtocol where T: Codable {
   private init() { }
 
   public static func parse(_ json: Data, completionHandler: @escaping ParserCallback<T>) {
-//    print(String(data: json, encoding: .utf8) ?? "")
+    //    print(String(data: json, encoding: .utf8) ?? "")
     do {
       let decodedObject = try JSONDecoder().decode(T.self, from: json)
       completionHandler(ParserResult.success(decodedObject))

@@ -23,13 +23,17 @@ final class TopTracksViewModel: BaseViewModel {
     return tracks?.count ?? 0
   }
 
+  var noResults: Bool {
+    return tracks?.isEmpty ?? true
+  }
+
   func getTrackViewModel(index: Int) -> TrackViewModel? {
-    guard let tracks = tracks, tracks.isNotEmpty, index < tracks.count, index >= 0   else { return nil }
+    guard let tracks = tracks, tracks.isValidIndex(index) else { return nil }
     return TrackViewModel(track: tracks[index])
   }
 
   //TODO: to update
   func updateTopTracks(heightTopTracks: Float) {
-   // self.topTracksDidChange?(self,heightTopTracks)
+    // self.topTracksDidChange?(self,heightTopTracks)
   }
 }

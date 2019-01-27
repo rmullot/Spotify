@@ -22,7 +22,7 @@ final class ArtistViewModel {
   }
 
   func getImageURL(width: Int) -> String {
-      guard let images = self.artist?.images, images.isNotEmpty else { return "" }
+    guard let images = self.artist?.images, images.isNotEmpty else { return "" }
     return Image.getBestPicture(images: images, width: width)
   }
 

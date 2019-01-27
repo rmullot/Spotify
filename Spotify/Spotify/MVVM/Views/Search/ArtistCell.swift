@@ -10,19 +10,19 @@ import UIKit
 
 final class ArtistCell: UITableViewCell {
 
-    private let placeholder = UIImage(named: "placeholder")
+  private let placeholder = UIImage(named: "placeholder")
 
-    @IBOutlet weak var genreLabel: UILabel!
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var photoImageview: UIImageView!
+  @IBOutlet weak var genreLabel: UILabel!
+  @IBOutlet weak var nameLabel: UILabel!
+  @IBOutlet weak var photoImageview: UIImageView!
 
-    weak var viewModel: ArtistViewModel! {
-        didSet {
-            self.photoImageview.loadImageWithUrl(viewModel.getImageURL(width: Int(self.photoImageview.frame.size.width)), placeHolder: placeholder)
-            self.nameLabel.text = viewModel.name
-            self.genreLabel.text = viewModel.genres
-        }
+  weak var viewModel: ArtistViewModel! {
+    didSet {
+      self.photoImageview.loadImageWithUrl(viewModel.getImageURL(width: Int(self.photoImageview.frame.size.width)), placeHolder: placeholder)
+      self.nameLabel.text = viewModel.name
+      self.genreLabel.text = viewModel.genres
     }
+  }
 
   override func prepareForReuse() {
     super.prepareForReuse()
@@ -31,12 +31,12 @@ final class ArtistCell: UITableViewCell {
     genreLabel.text = ""
   }
 
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
+  required init?(coder aDecoder: NSCoder) {
+    super.init(coder: aDecoder)
+  }
 
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super .init(style: style, reuseIdentifier: reuseIdentifier)
-    }
+  override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+    super .init(style: style, reuseIdentifier: reuseIdentifier)
+  }
 
 }

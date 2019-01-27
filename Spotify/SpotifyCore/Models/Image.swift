@@ -26,12 +26,12 @@ public struct Image: Codable {
     var selectedWidth: Int = Int.max
     var selectedURL: String = images[0].url
     images.forEach { (image) in
-        let deltaWidth =  image.width - width
-        let deltaChosenWidth =  selectedWidth - image.width
-        if deltaChosenWidth > deltaWidth {
-          selectedWidth =  image.width
-          selectedURL = image.url
-        }
+      let deltaWidth =  image.width - width
+      let deltaChosenWidth =  selectedWidth - image.width
+      if deltaChosenWidth > deltaWidth {
+        selectedWidth =  image.width
+        selectedURL = image.url
+      }
     }
     return selectedURL
   }

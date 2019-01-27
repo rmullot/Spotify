@@ -15,4 +15,9 @@ extension Array {
     return !self.isEmpty
   }
 
+  public func isValidIndex(_ index: Int) -> Bool {
+    guard self.isNotEmpty else { return false }
+    return  index < self.count && index >= 0
+  }
+
 }

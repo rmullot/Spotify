@@ -11,10 +11,10 @@ import Foundation
 public struct SearchArtistsRoot: Codable {
   var artists: SearchArtists
 
-    public init(from decoder: Decoder) throws {
-      let values = try decoder.container(keyedBy: CodingKeys.self)
-      artists = try values.decode(SearchArtists.self, forKey: .artists)
-    }
+  public init(from decoder: Decoder) throws {
+    let values = try decoder.container(keyedBy: CodingKeys.self)
+    artists = try values.decode(SearchArtists.self, forKey: .artists)
+  }
 }
 
 public struct SearchArtists: Codable {

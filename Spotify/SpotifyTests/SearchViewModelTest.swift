@@ -12,25 +12,25 @@ import SpotifyCore
 
 class SearchViewModelTest: XCTestCase {
 
-    private var viewModelValid = SearchViewModel()
+  private var viewModelValid = SearchViewModel()
 
-    override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+  override func setUp() {
+    // Put setup code here. This method is called before the invocation of each test method in the class.
 
-    }
+  }
 
   //TODO: to create a mock environment if I have the time
-//  func test_search_With_Results() {
-//    viewModelValid.getArtistsInformations(searchKeyWord: "ACDC")
-//    XCTAssertEqual(viewModelValid.artistsCount, 1)
-//    XCTAssertFalse(viewModelValid.noResults)
-//  }
-//
-//  func test_search_Without_Results() {
-//    viewModelValid.getArtistsInformations(searchKeyWord: "ACDC")
-//    XCTAssertEqual(viewModelValid.artistsCount, 0)
-//    XCTAssertTrue(viewModelValid.noResults)
-//  }
+  //  func test_search_With_Results() {
+  //    viewModelValid.getArtistsInformations(searchKeyWord: "ACDC")
+  //    XCTAssertEqual(viewModelValid.artistsCount, 1)
+  //    XCTAssertFalse(viewModelValid.noResults)
+  //  }
+  //
+  //  func test_search_Without_Results() {
+  //    viewModelValid.getArtistsInformations(searchKeyWord: "ACDC")
+  //    XCTAssertEqual(viewModelValid.artistsCount, 0)
+  //    XCTAssertTrue(viewModelValid.noResults)
+  //  }
 
   func test_default_errorMessage() {
     XCTAssertEqual(viewModelValid.errorMessage, "")
@@ -41,8 +41,8 @@ class SearchViewModelTest: XCTestCase {
     XCTAssertEqual(viewModelValid.errorMessage, L10n.noResults)
   }
 
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
+  override func tearDown() {
+    // Put teardown code here. This method is called after the invocation of each test method in the class.
+  }
 
 }

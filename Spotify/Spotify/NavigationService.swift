@@ -8,33 +8,35 @@
 
 import Foundation
 import UIKit
+import SpotifyCore
 
 protocol NavigationServiceProtocol {
-    func navigateToDescription()
+  func navigateToDescription(artist: Artist)
 }
 
 final class NavigationService: NavigationServiceProtocol {
 
-    // MARK: - Attributes
+  // MARK: - Attributes
 
-    static let sharedInstance = NavigationService()
+  static let sharedInstance = NavigationService()
 
-    private var navigationController: UINavigationController {
-      guard let navigationController = UIApplication.shared.keyWindow?.rootViewController as? UINavigationController else {
-          fatalError()
-      }
-      return navigationController
+  private var navigationController: UINavigationController {
+    guard let navigationController = UIApplication.shared.keyWindow?.rootViewController as? UINavigationController else {
+      fatalError()
     }
+    return navigationController
+  }
 
-    // MARK: - Methods
+  // MARK: - Methods
 
-    func navigateToDescription() {
-      guard navigationController.visibleViewController is SearchViewController  else { return }
-      let descriptionViewController = DescriptionViewController.initFromNib()
-      navigationController.pushViewController(descriptionViewController, animated: true)
-    }
+  func navigateToDescription(artist: Artist) {
+    guard navigationController.visibleViewController is SearchViewController  else { return }
+    let descriptionViewController = DescriptionViewController.initFromNib()
+    descriptionViewController.viewModel = DescriptionViewModel(artist: artist)
+    navigationController.pushViewController(descriptionViewController, animated: true)
+  }
 
-    // MARK: - Private Methods
+  // MARK: - Private Methods
 
-    private init() {}
+  private init() {}
 }
