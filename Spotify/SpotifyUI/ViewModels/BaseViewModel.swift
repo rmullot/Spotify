@@ -10,7 +10,7 @@ import Foundation
 
 public typealias PropertyChangedClosure = (_ name: String) -> Void
 
-public protocol BaseViewModelProtocol {
+public protocol BaseViewModelProtocol: class {
     func validate()
     var propertyChanged: PropertyChangedClosure? {get set}
 }

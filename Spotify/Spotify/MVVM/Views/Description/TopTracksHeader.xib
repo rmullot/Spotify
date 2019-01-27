@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="RalewayX-Bold.ttf">
+            <string>RalewayX-Bold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" restorationIdentifier="CardHeaderReusableViewID" id="0X5-M2-goV" customClass="TopTracksHeader" customModule="Spotify" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TOP TRACKS" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PwN-ot-A8a">
+                    <rect key="frame" x="20" y="10" width="200" height="20"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="20" id="LBu-KY-NID"/>
+                        <constraint firstAttribute="width" constant="200" id="Plm-fW-uiA"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="RalewayX-Bold" family="RalewayX" pointSize="13"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="PwN-ot-A8a" firstAttribute="centerY" secondItem="0X5-M2-goV" secondAttribute="centerY" id="4Ng-z9-Tde"/>
+                <constraint firstItem="PwN-ot-A8a" firstAttribute="leading" secondItem="Oor-8v-98i" secondAttribute="leading" constant="20" id="dit-xg-e18"/>
+            </constraints>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="Oor-8v-98i"/>
+            <connections>
+                <outlet property="titleLabel" destination="PwN-ot-A8a" id="lT2-SL-h8R"/>
+            </connections>
+            <point key="canvasLocation" x="292" y="-207"/>
+        </view>
+    </objects>
+</document>

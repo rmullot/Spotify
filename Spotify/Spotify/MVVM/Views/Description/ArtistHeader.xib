@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="6sm-Un-B9I" customClass="ArtistHeader" customModule="Spotify" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Genre" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ib3-pd-pay">
+                    <rect key="frame" x="100" y="54" width="265" height="36"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="36" id="PSy-yc-PkX"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kbp-JD-Xei">
+                    <rect key="frame" x="100" y="10" width="265" height="36"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="36" id="zO6-hX-bSV"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3BD-lc-6Sq">
+                    <rect key="frame" x="10" y="10" width="80" height="80"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="80" id="umT-uq-urn"/>
+                        <constraint firstAttribute="height" constant="80" id="y3B-0q-qQU"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <integer key="value" value="8"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="kbp-JD-Xei" firstAttribute="leading" secondItem="3BD-lc-6Sq" secondAttribute="trailing" constant="10" id="7P5-sx-b56"/>
+                <constraint firstItem="IBj-cg-9bV" firstAttribute="trailing" secondItem="kbp-JD-Xei" secondAttribute="trailing" constant="10" id="ORH-BL-7xB"/>
+                <constraint firstItem="3BD-lc-6Sq" firstAttribute="centerY" secondItem="6sm-Un-B9I" secondAttribute="centerY" id="Rue-zj-Oo3"/>
+                <constraint firstItem="3BD-lc-6Sq" firstAttribute="leading" secondItem="IBj-cg-9bV" secondAttribute="leading" constant="10" id="V1e-Gi-nmL"/>
+                <constraint firstItem="Ib3-pd-pay" firstAttribute="bottom" secondItem="3BD-lc-6Sq" secondAttribute="bottom" id="VAj-Ti-9yf"/>
+                <constraint firstItem="kbp-JD-Xei" firstAttribute="top" secondItem="3BD-lc-6Sq" secondAttribute="top" id="iuw-Wj-aWi"/>
+                <constraint firstItem="IBj-cg-9bV" firstAttribute="trailing" secondItem="Ib3-pd-pay" secondAttribute="trailing" constant="10" id="sXL-c4-6aF"/>
+                <constraint firstItem="Ib3-pd-pay" firstAttribute="leading" secondItem="3BD-lc-6Sq" secondAttribute="trailing" constant="10" id="wxo-wx-WJT"/>
+            </constraints>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="IBj-cg-9bV"/>
+            <connections>
+                <outlet property="genreLabel" destination="Ib3-pd-pay" id="bdg-Bo-qgW"/>
+                <outlet property="nameLabel" destination="kbp-JD-Xei" id="glQ-Va-lPV"/>
+                <outlet property="photoImageview" destination="3BD-lc-6Sq" id="cHq-KM-y9W"/>
+            </connections>
+        </view>
+    </objects>
+</document>

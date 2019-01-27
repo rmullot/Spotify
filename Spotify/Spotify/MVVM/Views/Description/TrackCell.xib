@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="RalewayX-Regular.ttf">
+            <string>RalewayX-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TrackCell" rowHeight="44" id="eGj-GH-d59" userLabel="TrackCell" customClass="TrackCell" customModule="Spotify" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="eGj-GH-d59" id="yWJ-b5-qw1">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Track name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kaz-x8-rla">
+                        <rect key="frame" x="20" y="11" width="335" height="22"/>
+                        <fontDescription key="fontDescription" name="RalewayX-Regular" family="RalewayX" pointSize="12"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="kaz-x8-rla" firstAttribute="top" secondItem="yWJ-b5-qw1" secondAttribute="topMargin" id="Lfh-Ii-hc0"/>
+                    <constraint firstItem="kaz-x8-rla" firstAttribute="bottom" secondItem="yWJ-b5-qw1" secondAttribute="bottomMargin" id="bvK-dD-SbS"/>
+                    <constraint firstItem="kaz-x8-rla" firstAttribute="leading" secondItem="yWJ-b5-qw1" secondAttribute="leading" constant="20" id="igu-mk-6Yq"/>
+                    <constraint firstAttribute="trailing" secondItem="kaz-x8-rla" secondAttribute="trailing" constant="20" id="pcw-VV-1Ar"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="nameLabel" destination="kaz-x8-rla" id="Ipm-GM-8wx"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+</document>
