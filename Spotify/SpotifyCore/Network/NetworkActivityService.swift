@@ -68,7 +68,9 @@ public final class NetworkActivityService: NetworkActivityServiceProtocol {
       closure()
     }
     countRequest.setValue(0)
-    UIApplication.shared.isNetworkActivityIndicatorVisible = false
+    DispatchQueue.main.async {
+       UIApplication.shared.isNetworkActivityIndicatorVisible = false
+    }
   }
 
 }

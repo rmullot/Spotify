@@ -12,7 +12,6 @@ final class AlbumCell: UICollectionViewCell {
 
   @IBOutlet weak var nameLabel: UILabel!
   @IBOutlet weak var photoImageview: UIImageView!
-  @IBOutlet weak var photoImageviewHeight: NSLayoutConstraint!
 
   private let placeholder = UIImage(named: "placeholder")
 

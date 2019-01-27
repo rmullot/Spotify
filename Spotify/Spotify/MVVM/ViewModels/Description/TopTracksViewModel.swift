@@ -15,6 +15,8 @@ final class TopTracksViewModel: BaseViewModel {
 
   internal required init() { }
 
+  var topTracksDidChange: ((TopTracksViewModel, Float) -> Void)?
+
   init(tracks: [Track]) {
     self.tracks = tracks
   }
@@ -32,8 +34,7 @@ final class TopTracksViewModel: BaseViewModel {
     return TrackViewModel(track: tracks[index])
   }
 
-  //TODO: to update
   func updateTopTracks(heightTopTracks: Float) {
-    // self.topTracksDidChange?(self,heightTopTracks)
+    self.topTracksDidChange?(self, heightTopTracks)
   }
 }

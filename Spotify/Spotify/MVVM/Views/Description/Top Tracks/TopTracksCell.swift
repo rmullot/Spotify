@@ -10,26 +10,30 @@ import UIKit
 
 final class TopTracksCell: UICollectionViewCell {
 
-  private let heightFirstHeader: CGFloat = 63.0
+  private let heightTopTracksHeader: CGFloat = 40.0
   private let heightFooter: CGFloat = 1.0
-  private let heightLastFooter: CGFloat = 10.0
-  private let heightOtherHeaders: CGFloat = 33.0
+  private let heightOtherHeaders: CGFloat = 1.0
 
   @IBOutlet weak var tableview: UITableView!
 
   var viewModel: TopTracksViewModel! {
     didSet {
+      tableview.isHidden = self.viewModel.noResults
+      //TODO: add message error
+      //    if viewModel.noResults {
+      //      viewModel.rebootStatusMessage()
+      //    }
       tableview.reloadData()
       tableview.setNeedsLayout()
       UIView.animate(withDuration: 0.5, animations: {
         self.tableview.layoutIfNeeded()
       }, completion: { (_) in
-        var heightOfTableView: CGFloat = self.heightFirstHeader
+        var heightOfTableView: CGFloat = self.heightTopTracksHeader
         // Get visible cells and sum up their heights
         self.tableview.visibleCells.forEach({ cell in
-          heightOfTableView += cell.frame.height + self.heightOtherHeaders + self.heightFooter
+          heightOfTableView += cell.frame.height
         })
-        heightOfTableView += self.heightLastFooter
+        heightOfTableView += self.heightFooter
         // Edit heightOfTableViewConstraint's constant to update height of table view
         self.viewModel.updateTopTracks(heightTopTracks: Float(heightOfTableView))
       })
@@ -50,6 +54,7 @@ final class TopTracksCell: UICollectionViewCell {
 }
 
 // MARK: - UITableViewDataSource
+
 extension TopTracksCell: UITableViewDataSource {
 
   func numberOfSections(in tableView: UITableView) -> Int {
@@ -57,11 +62,6 @@ extension TopTracksCell: UITableViewDataSource {
   }
 
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    tableView.isHidden = viewModel.noResults
-    //TODO: add message error
-    //    if viewModel.noResults {
-    //      viewModel.rebootStatusMessage()
-    //    }
     return viewModel.tracksCount
   }
 
@@ -76,16 +76,17 @@ extension TopTracksCell: UITableViewDataSource {
   }
 
   func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-    return section == 0 ? heightFirstHeader : heightOtherHeaders
+    return heightTopTracksHeader
   }
 
   func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-    return section == viewModel.tracksCount - 1 ? heightLastFooter : 1
+    return heightFooter
   }
 
 }
 
 // MARK: - UITableViewDelegate
+
 extension TopTracksCell: UITableViewDelegate {
 
   func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
@@ -93,9 +94,7 @@ extension TopTracksCell: UITableViewDelegate {
   }
 
   func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-    guard section == 0 else {
-      return UIView()
-    }
+    guard section == 0 else { return UIView() }
     return tableView.dequeueReusableView(TopTracksHeader.self)
   }
 

@@ -561,12 +561,9 @@
 		7AD3C0C021FD2D0700EB226E /* Description */ = {
 			isa = PBXGroup;
 			children = (
+				7AD3C0ED21FE299700EB226E /* Albums */,
 				7AD3C0EB21FE193400EB226E /* Top Tracks */,
 				7AD3C0C921FD2EC300EB226E /* Xibs */,
-				7AD3C0C721FD2EBC00EB226E /* AlbumCell.xib */,
-				7AD3C0D421FD32F400EB226E /* AlbumCell.swift */,
-				7AD3C0CE21FD309700EB226E /* AlbumsCell.xib */,
-				7AD3C0D621FD342800EB226E /* AlbumsCell.swift */,
 				7AD3C0C221FD2D1700EB226E /* DescriptionViewController.xib */,
 				7AD3C0C121FD2D1700EB226E /* DescriptionViewController.swift */,
 				7AD3C0DD21FD435A00EB226E /* ArtistHeader.swift */,
@@ -616,6 +613,25 @@
 				7AD3C0CC21FD2EEE00EB226E /* TrackCell.xib */,
 				7AD3C0E721FDCF2C00EB226E /* TopTracksHeader.xib */,
 				7AD3C0CA21FD2EE100EB226E /* TopTracksCell.xib */,
+			);
+			path = Xibs;
+			sourceTree = "<group>";
+		};
+		7AD3C0ED21FE299700EB226E /* Albums */ = {
+			isa = PBXGroup;
+			children = (
+				7AD3C0EE21FE29C400EB226E /* Xibs */,
+				7AD3C0D421FD32F400EB226E /* AlbumCell.swift */,
+				7AD3C0D621FD342800EB226E /* AlbumsCell.swift */,
+			);
+			path = Albums;
+			sourceTree = "<group>";
+		};
+		7AD3C0EE21FE29C400EB226E /* Xibs */ = {
+			isa = PBXGroup;
+			children = (
+				7AD3C0C721FD2EBC00EB226E /* AlbumCell.xib */,
+				7AD3C0CE21FD309700EB226E /* AlbumsCell.xib */,
 			);
 			path = Xibs;
 			sourceTree = "<group>";

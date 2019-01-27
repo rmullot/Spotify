@@ -21,6 +21,10 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cn3-r7-XFF">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TOP TRACKS" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PwN-ot-A8a">
                     <rect key="frame" x="20" y="10" width="200" height="20"/>
                     <constraints>
@@ -31,10 +35,13 @@
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="PwN-ot-A8a" firstAttribute="centerY" secondItem="0X5-M2-goV" secondAttribute="centerY" id="4Ng-z9-Tde"/>
+                <constraint firstItem="cn3-r7-XFF" firstAttribute="leading" secondItem="Oor-8v-98i" secondAttribute="leading" id="Ksn-H7-cjQ"/>
+                <constraint firstItem="cn3-r7-XFF" firstAttribute="top" secondItem="Oor-8v-98i" secondAttribute="top" id="Zu2-Eg-15V"/>
                 <constraint firstItem="PwN-ot-A8a" firstAttribute="leading" secondItem="Oor-8v-98i" secondAttribute="leading" constant="20" id="dit-xg-e18"/>
+                <constraint firstAttribute="bottom" secondItem="cn3-r7-XFF" secondAttribute="bottom" id="g3r-V3-LUX"/>
+                <constraint firstItem="Oor-8v-98i" firstAttribute="trailing" secondItem="cn3-r7-XFF" secondAttribute="trailing" id="kIN-uH-Jgt"/>
             </constraints>
             <nil key="simulatedTopBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>

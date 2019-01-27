@@ -31,10 +31,7 @@ final class DescriptionViewController: UIViewController, UICollectionViewDelegat
         self?.collectionView?.reloadData()
         self?.refreshLayout(animation: true)
       }
-      self.viewModel.topTrackDidChange = { [weak self] (viewModel, height) in
-        self?.heightMenuTopTracks = CGFloat(height)
-        self?.refreshLayout(animation: false)
-      }
+
       self.viewModel.updateDescriptionContent()
     }
   }
@@ -68,6 +65,10 @@ final class DescriptionViewController: UIViewController, UICollectionViewDelegat
     case DescriptionTypeCell.topTracks.rawValue:
       let cell = self.collectionView.dequeueReusableCell(TopTracksCell.self, indexPath: indexPath)
       cell.viewModel = viewModel.getTopTracksViewModel()
+      cell.viewModel.topTracksDidChange = { [weak self] (viewModel, height) in
+        self?.heightMenuTopTracks = CGFloat(height)
+        self?.refreshLayout(animation: true)
+      }
       return cell
     case DescriptionTypeCell.albums.rawValue:
       let cell = self.collectionView.dequeueReusableCell(AlbumsCell.self, indexPath: indexPath)
@@ -101,15 +102,13 @@ final class DescriptionViewController: UIViewController, UICollectionViewDelegat
     return CGSize(width: UIScreen.main.bounds.size.width, height: ArtistHeader.heightDefault)
   }
 
-  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
-    return CGSize(width: UIScreen.main.bounds.size.width, height: 1)
-  }
-
   override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
     collectionView?.collectionViewLayout.invalidateLayout()
     super.viewWillTransition(to: size, with: coordinator)
   }
 }
+
+// MARK: - UICollectionViewDelegateFlowLayout
 
 extension DescriptionViewController: UICollectionViewDelegateFlowLayout {
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

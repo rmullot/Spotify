@@ -22,6 +22,10 @@ final class SearchViewController: BaseViewController<SearchViewModel>, UITableVi
     viewModel.propertyChanged = { [weak self] key in self?.viewModelPropertyChanged(key) }
     viewModel.artistsDidChange = { [weak self] viewModel in
       self?.refreshControl.endRefreshing()
+      self?.tableView.isHidden = viewModel.noResults
+      if self?.viewModel.noResults ?? true {
+        self?.viewModel.rebootStatusMessage()
+      }
       self?.tableView.reloadData()
     }
     tableView.accessibilityIdentifier = UITestingIdentifiers.searchViewController.rawValue
@@ -56,10 +60,6 @@ final class SearchViewController: BaseViewController<SearchViewModel>, UITableVi
   }
 
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    tableView.isHidden = viewModel.noResults
-    if viewModel.noResults {
-      viewModel.rebootStatusMessage()
-    }
     return viewModel.artistsCount
   }
 

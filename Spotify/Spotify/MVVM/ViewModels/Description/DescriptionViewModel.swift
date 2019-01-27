@@ -16,7 +16,6 @@ final class DescriptionViewModel {
   private var albums: [Album]?
 
   var albumsDidChange: ((DescriptionViewModel) -> Void)?
-  var topTrackDidChange: ((DescriptionViewModel, Float) -> Void)?
 
   private init() { }
 
@@ -39,18 +38,12 @@ final class DescriptionViewModel {
     return AlbumsViewModel(albums: albums)
   }
 
-  //TODO: to check
-  func updateTopTrackList(heightCardMenu: Float) {
-    self.topTrackDidChange?(self, heightCardMenu)
-  }
-
   func updateDescriptionContent() {
     guard let idArtist = artist?.idArtist, idArtist.isNotEmpty else { return }
     WebServiceService.sharedInstance.getTopTrackList(idArtist: idArtist) { (result) in
       switch result {
       case .success(let tracks):
         self.topTracks = tracks
-        self.topTrackDidChange?(self, 0)
       case .error(let message):
         //TODO: to upgrade
         print(message)
