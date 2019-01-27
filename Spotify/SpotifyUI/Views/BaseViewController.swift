@@ -11,17 +11,17 @@ import Foundation
 
 open class BaseViewController<T: BaseViewModel>: UIViewController {
 
-    private var didHideKeyboardObserver: NSObjectProtocol!
-    private var didShowKeyboardObserver: NSObjectProtocol!
-    private var keyboardNotificationsRegistered: Bool = false
-    private var hideKeyboardGestureRecognizer: UITapGestureRecognizer!
-    private var willHideKeyboardObserver: NSObjectProtocol!
-    private var willShowKeyboardObserver: NSObjectProtocol!
+  private var didHideKeyboardObserver: NSObjectProtocol!
+  private var didShowKeyboardObserver: NSObjectProtocol!
+  private var keyboardNotificationsRegistered: Bool = false
+  private var hideKeyboardGestureRecognizer: UITapGestureRecognizer!
+  private var willHideKeyboardObserver: NSObjectProtocol!
+  private var willShowKeyboardObserver: NSObjectProtocol!
 
-    // MARK: - Initialization & Memory Management
+  // MARK: - Initialization & Memory Management
 
   deinit {
-        print("\(self)")
+    print("\(self)")
   }
 
   override open func viewWillAppear(_ animated: Bool) {
@@ -54,16 +54,16 @@ open class BaseViewController<T: BaseViewModel>: UIViewController {
 
   open var touchBackgroundHidesKeyboard = false {
     didSet {
-        guard touchBackgroundHidesKeyboard != oldValue else { return }
-        if touchBackgroundHidesKeyboard {
-            hideKeyboardGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-            hideKeyboardGestureRecognizer.cancelsTouchesInView = false
-            view.addGestureRecognizer(hideKeyboardGestureRecognizer)
-        } else {
-            guard hideKeyboardGestureRecognizer != nil else { return }
-            view.removeGestureRecognizer(hideKeyboardGestureRecognizer)
-            hideKeyboardGestureRecognizer = nil
-        }
+      guard touchBackgroundHidesKeyboard != oldValue else { return }
+      if touchBackgroundHidesKeyboard {
+        hideKeyboardGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        hideKeyboardGestureRecognizer.cancelsTouchesInView = false
+        view.addGestureRecognizer(hideKeyboardGestureRecognizer)
+      } else {
+        guard hideKeyboardGestureRecognizer != nil else { return }
+        view.removeGestureRecognizer(hideKeyboardGestureRecognizer)
+        hideKeyboardGestureRecognizer = nil
+      }
     }
   }
 
@@ -87,22 +87,22 @@ open class BaseViewController<T: BaseViewModel>: UIViewController {
     guard !keyboardNotificationsRegistered else { return }
     keyboardNotificationsRegistered = true
     didHideKeyboardObserver = NotificationCenter.default.addObserver(forName: UIResponder.keyboardDidHideNotification, object: nil, queue: nil) { [unowned self] notification in
-        self.isKeyboardVisible = false
-        self.keyboardDidHide(self.getKeyboardSize(notification))
+      self.isKeyboardVisible = false
+      self.keyboardDidHide(self.getKeyboardSize(notification))
     }
     didShowKeyboardObserver = NotificationCenter.default.addObserver(forName: UIResponder.keyboardDidShowNotification, object: nil, queue: nil) { [unowned self] notification in
-        self.isKeyboardVisible = true
-        self.keyboardDidShow(self.getKeyboardSize(notification))
+      self.isKeyboardVisible = true
+      self.keyboardDidShow(self.getKeyboardSize(notification))
     }
     willHideKeyboardObserver = NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillHideNotification, object: nil, queue: nil) { [unowned self] notification in
-        self.keyboardWillHide(self.getKeyboardSize(notification))
+      self.keyboardWillHide(self.getKeyboardSize(notification))
     }
     willShowKeyboardObserver = NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillShowNotification, object: nil, queue: nil) { [unowned self] notification in
-        self.keyboardWillShow(self.getKeyboardSize(notification))
+      self.keyboardWillShow(self.getKeyboardSize(notification))
     }
   }
 
-   func stopListeningKeyboardNotifications() {
+  func stopListeningKeyboardNotifications() {
     guard keyboardNotificationsRegistered else { return }
     NotificationCenter.default.removeObserver(didHideKeyboardObserver)
     NotificationCenter.default.removeObserver(didShowKeyboardObserver)

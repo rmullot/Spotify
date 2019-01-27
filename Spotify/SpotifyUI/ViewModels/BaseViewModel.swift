@@ -10,9 +10,9 @@ import Foundation
 
 public typealias PropertyChangedClosure = (_ name: String) -> Void
 
-public protocol BaseViewModelProtocol {
-    func validate()
-    var propertyChanged: PropertyChangedClosure? {get set}
+public protocol BaseViewModelProtocol: class {
+  func validate()
+  var propertyChanged: PropertyChangedClosure? {get set}
 }
 
 open class BaseViewModel: BaseViewModelProtocol {
@@ -22,8 +22,8 @@ open class BaseViewModel: BaseViewModelProtocol {
   // MARK: - public Properties
 
   public enum PropertyNames: String {
-      case errorMessage
-      case isValid
+    case errorMessage
+    case isValid
   }
 
   open var isValid: Bool {
@@ -34,7 +34,7 @@ open class BaseViewModel: BaseViewModelProtocol {
 
   open var errorMessage: String = "" {
     didSet {
-        propertyChanged?(PropertyNames.errorMessage.rawValue)
+      propertyChanged?(PropertyNames.errorMessage.rawValue)
     }
   }
 

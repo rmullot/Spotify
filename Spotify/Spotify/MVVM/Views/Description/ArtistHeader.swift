@@ -1,16 +1,18 @@
 //
-//  ArtistCell.swift
+//  ArtistHeader.swift
 //  Spotify
 //
-//  Created by Romain Mullot on 26/01/2019.
+//  Created by Romain Mullot on 27/01/2019.
 //  Copyright © 2019 Romain Mullot. All rights reserved.
 //
 
 import UIKit
 
-final class ArtistCell: UITableViewCell {
+final class ArtistHeader: UICollectionReusableView {
 
   private let placeholder = UIImage(named: "placeholder")
+
+  static let heightDefault: CGFloat = 100.0
 
   @IBOutlet weak var genreLabel: UILabel!
   @IBOutlet weak var nameLabel: UILabel!
@@ -33,10 +35,6 @@ final class ArtistCell: UITableViewCell {
 
   required init?(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
-  }
-
-  override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-    super .init(style: style, reuseIdentifier: reuseIdentifier)
   }
 
 }

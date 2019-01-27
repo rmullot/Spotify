@@ -33,19 +33,19 @@ class SpotifyUITests: XCTestCase {
   }
 
   func test_search_and_display_Artists_Description_event() {
-//    XCTAssertTrue(app.tables[UITestingIdentifiers.searchViewController.rawValue].exists)
-//    let tableView = app.tables[UITestingIdentifiers.searchViewController.rawValue]
-//    XCTAssertTrue(app.searchFields[UITestingIdentifiers.searchBar.rawValue].exists)
-//    let searchfield = app.searchFields[UITestingIdentifiers.searchBar.rawValue]
-//    searchfield.typeText("Queen")
-//
-//    let exists = NSPredicate(format: "self.count > 0")
-//    expectation (for: exists, evaluatedWith: tableView.cells, handler: nil)
-//    waitForExpectations(timeout: 5, handler: { (_) in
-//
-//    })
-//    tableView.cells.element(boundBy: 0).tap()
-//    let descriptionView = self.app.otherElements[UITestingIdentifiers.descriptionViewController.rawValue]
-//    XCTAssertTrue(descriptionView.exists)
+    //    XCTAssertTrue(app.tables[UITestingIdentifiers.searchViewController.rawValue].exists)
+    //    let tableView = app.tables[UITestingIdentifiers.searchViewController.rawValue]
+    //    XCTAssertTrue(app.searchFields[UITestingIdentifiers.searchBar.rawValue].exists)
+    //    let searchfield = app.searchFields[UITestingIdentifiers.searchBar.rawValue]
+    //    searchfield.typeText("Queen")
+    //
+    //    let exists = NSPredicate(format: "self.count > 0")
+    //    expectation (for: exists, evaluatedWith: tableView.cells, handler: nil)
+    //    waitForExpectations(timeout: 5, handler: { (_) in
+    //
+    //    })
+    //    tableView.cells.element(boundBy: 0).tap()
+    //    let descriptionView = self.app.otherElements[UITestingIdentifiers.descriptionViewController.rawValue]
+    //    XCTAssertTrue(descriptionView.exists)
   }
 }

@@ -22,6 +22,10 @@ final class SearchViewController: BaseViewController<SearchViewModel>, UITableVi
     viewModel.propertyChanged = { [weak self] key in self?.viewModelPropertyChanged(key) }
     viewModel.artistsDidChange = { [weak self] viewModel in
       self?.refreshControl.endRefreshing()
+      self?.tableView.isHidden = viewModel.noResults
+      if self?.viewModel.noResults ?? true {
+        self?.viewModel.rebootStatusMessage()
+      }
       self?.tableView.reloadData()
     }
     tableView.accessibilityIdentifier = UITestingIdentifiers.searchViewController.rawValue
@@ -39,7 +43,7 @@ final class SearchViewController: BaseViewController<SearchViewModel>, UITableVi
   private func viewModelPropertyChanged(_ key: String) {
     switch key {
     case SearchViewModel.PropertyKeys.errorMessage.rawValue:
-         messageLabel.text = viewModel.errorMessage
+      messageLabel.text = viewModel.errorMessage
     default:
       break
     }
@@ -56,10 +60,6 @@ final class SearchViewController: BaseViewController<SearchViewModel>, UITableVi
   }
 
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    tableView.isHidden = viewModel.noResults
-    if viewModel.noResults {
-      viewModel.rebootStatusMessage()
-    }
     return viewModel.artistsCount
   }
 
@@ -81,6 +81,10 @@ final class SearchViewController: BaseViewController<SearchViewModel>, UITableVi
 
   func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
     return UIView()
+  }
+
+  public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    viewModel.displayDescription(index: indexPath.row)
   }
 
   // MARK: - UISearchBarDelegate

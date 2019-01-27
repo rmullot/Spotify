@@ -10,8 +10,8 @@ import Foundation
 
 extension String {
 
-    public var isAlphaNumeric: Bool {
-        return range(of: "[^a-zA-ZÀ-ÿ0-9\\s]", options: .regularExpression) == nil
-    }
+  public var isAlphaNumeric: Bool {
+    return range(of: "[^a-zA-ZÀ-ÿ0-9\\s]", options: .regularExpression) == nil
+  }
 
 }
