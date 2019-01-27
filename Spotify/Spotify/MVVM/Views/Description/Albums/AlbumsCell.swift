@@ -8,15 +8,18 @@
 
 import UIKit
 
-final class AlbumsCell: UICollectionViewCell, UICollectionViewDelegate, UICollectionViewDataSource {
+final class AlbumsCell: UICollectionViewCell, UICollectionViewDelegate, UICollectionViewDataSource, UIScrollViewDelegate {
 
-  static let heightDefault: CGFloat = 160.0
+  static let heightDefault: CGFloat = 175.0
 
   @IBOutlet weak var collectionView: UICollectionView!
+  @IBOutlet weak var pageControl: UIPageControl!
 
   var viewModel: AlbumsViewModel! {
     didSet {
       collectionView.isHidden = viewModel.noResults
+      pageControl.numberOfPages = viewModel.albumsCount
+      configCurrentPage()
       collectionView.reloadData()
     }
   }
@@ -45,6 +48,16 @@ final class AlbumsCell: UICollectionViewCell, UICollectionViewDelegate, UICollec
 
   func numberOfSections(in collectionView: UICollectionView) -> Int {
     return 1
+  }
+
+  func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+    configCurrentPage()
+  }
+
+  private func configCurrentPage() {
+    if let indexPath = collectionView.indexPathsForVisibleItems.first {
+      pageControl.currentPage = indexPath.row
+    }
   }
 
 }
