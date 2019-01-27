@@ -345,10 +345,10 @@
 		7AA7CBDA21FA0F5D002DEE1B /* Spotify */ = {
 			isa = PBXGroup;
 			children = (
-				7AD3C0BD21FD2C1700EB226E /* NavigationService.swift */,
 				7AA7CC0E21FA0F9F002DEE1B /* Resources */,
 				7AA7CC0921FA0F65002DEE1B /* MVVM */,
 				7AA7CBDB21FA0F5D002DEE1B /* AppDelegate.swift */,
+				7AD3C0BD21FD2C1700EB226E /* NavigationService.swift */,
 				7AC37F1621FCA5090068C323 /* UITestKey.swift */,
 				7AA7CBE721FA0F5E002DEE1B /* Info.plist */,
 			);

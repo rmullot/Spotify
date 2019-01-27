@@ -9,7 +9,9 @@
 import UIKit
 import SpotifyCore
 
-final class DescriptionViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+final class DescriptionViewController: BaseViewController<DescriptionViewModel>, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+
+  // MARK: - Attributes
 
   fileprivate enum DescriptionTypeCell: Int {
     case topTracks
@@ -23,20 +25,12 @@ final class DescriptionViewController: UIViewController, UICollectionViewDelegat
   }
 
   @IBOutlet weak var collectionView: UICollectionView!
+
   private var heightMenuTopTracks: CGFloat = 1000.0
 
-  var viewModel: DescriptionViewModel! {
-    didSet {
-      self.viewModel.descriptionDidChange = { [weak self] viewModel in
-        self?.collectionView?.reloadData()
-        self?.refreshLayout(animation: true)
-      }
+  // MARK: - Methods
 
-      self.viewModel.updateDescriptionContent()
-    }
-  }
-
-  func refreshLayout(animation: Bool = false) {
+  private func refreshLayout(animation: Bool = false) {
     let duration = animation ? 0.5 :0.0
     UIView.animate(withDuration: duration) {
       self.collectionView?.collectionViewLayout.invalidateLayout()
@@ -45,13 +39,17 @@ final class DescriptionViewController: UIViewController, UICollectionViewDelegat
   }
 
   override func viewDidLoad() {
-    self.collectionView?.accessibilityIdentifier = UITestingIdentifiers.descriptionViewController.rawValue
     super.viewDidLoad()
-    self.collectionView?.contentInsetAdjustmentBehavior = .never
-    self.collectionView?.backgroundColor = .white
-    self.collectionView?.registerReusableCell(AlbumsCell.self)
-    self.collectionView?.registerReusableCell(TopTracksCell.self)
-    self.collectionView?.registerReusableHeader(ArtistHeader.self)
+    self.viewModel.descriptionDidChange = { [weak self] viewModel in
+      self?.collectionView.reloadData()
+      self?.refreshLayout(animation: true)
+    }
+    collectionView.accessibilityIdentifier = UITestingIdentifiers.descriptionViewController.rawValue
+    collectionView.contentInsetAdjustmentBehavior = .never
+    collectionView.registerReusableCell(AlbumsCell.self)
+    collectionView.registerReusableCell(TopTracksCell.self)
+    collectionView.registerReusableHeader(ArtistHeader.self)
+    viewModel.updateDescriptionContent()
   }
 
   override func viewWillDisappear(_ animated: Bool) {
@@ -59,6 +57,8 @@ final class DescriptionViewController: UIViewController, UICollectionViewDelegat
     NotificationCenter.default.removeObserver(self)
     WebServiceService.sharedInstance.cancelRequests()
   }
+
+  // MARK: - UICollectionViewDelegate & UICollectionViewDataSource
 
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     switch indexPath.row {
@@ -107,11 +107,9 @@ final class DescriptionViewController: UIViewController, UICollectionViewDelegat
     collectionView?.collectionViewLayout.invalidateLayout()
     super.viewWillTransition(to: size, with: coordinator)
   }
-}
 
-// MARK: - UICollectionViewDelegateFlowLayout
+  // MARK: - UICollectionViewDelegateFlowLayout
 
-extension DescriptionViewController: UICollectionViewDelegateFlowLayout {
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
     var size = CGSize.zero
     if indexPath.row < DescriptionTypeCell.count {
