@@ -9,7 +9,7 @@
 import Foundation
 import SpotifyCore
 
-final class TrackViewModel {
+final class TrackViewModel: BaseViewModel {
 
   private var track: Track?
 
@@ -17,7 +17,7 @@ final class TrackViewModel {
     return track?.name ?? ""
   }
 
-  private init() { }
+  internal required init() { }
 
   init(track: Track) {
     self.track = track

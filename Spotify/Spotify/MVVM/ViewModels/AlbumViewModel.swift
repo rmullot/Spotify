@@ -9,7 +9,7 @@
 import Foundation
 import SpotifyCore
 
-final class AlbumViewModel {
+final class AlbumViewModel: BaseViewModel {
 
   private var album: Album?
 
@@ -22,7 +22,7 @@ final class AlbumViewModel {
     return Image.getBestPicture(images: images, width: width)
   }
 
-  private init() { }
+  internal required init() { }
 
   init(album: Album) {
     self.album = album

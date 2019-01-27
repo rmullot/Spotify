@@ -9,15 +9,15 @@
 import Foundation
 import SpotifyCore
 
-final class DescriptionViewModel {
+final class DescriptionViewModel: BaseViewModel {
 
   private var artist: Artist?
   private var topTracks: [Track]?
   private var albums: [Album]?
 
-  var albumsDidChange: ((DescriptionViewModel) -> Void)?
+  var descriptionDidChange: ((DescriptionViewModel) -> Void)?
 
-  private init() { }
+  internal required init() { }
 
   init(artist: Artist) {
     self.artist = artist
@@ -45,20 +45,22 @@ final class DescriptionViewModel {
       case .success(let tracks):
         self.topTracks = tracks
       case .error(let message):
-        //TODO: to upgrade
-        print(message)
+        self.errorMessage = message
+        self.topTracks = []
+
       }
+      self.descriptionDidChange?(self)
     }
 
     WebServiceService.sharedInstance.getAlbumsList(idArtist: idArtist) { (result) in
       switch result {
       case .success(let albums):
         self.albums = albums
-        self.albumsDidChange?(self)
       case .error(let message):
-        //TODO: to upgrade
-        print(message)
+        self.errorMessage = message
+        self.albums = []
       }
+      self.descriptionDidChange?(self)
     }
 
   }

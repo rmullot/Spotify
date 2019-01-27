@@ -27,7 +27,7 @@ final class DescriptionViewController: UIViewController, UICollectionViewDelegat
 
   var viewModel: DescriptionViewModel! {
     didSet {
-      self.viewModel.albumsDidChange = { [weak self] viewModel in
+      self.viewModel.descriptionDidChange = { [weak self] viewModel in
         self?.collectionView?.reloadData()
         self?.refreshLayout(animation: true)
       }
@@ -73,6 +73,7 @@ final class DescriptionViewController: UIViewController, UICollectionViewDelegat
     case DescriptionTypeCell.albums.rawValue:
       let cell = self.collectionView.dequeueReusableCell(AlbumsCell.self, indexPath: indexPath)
       cell.viewModel = self.viewModel.getAlbumsViewModel()
+      cell.contentView.isUserInteractionEnabled = false
       return cell
     default:
       break

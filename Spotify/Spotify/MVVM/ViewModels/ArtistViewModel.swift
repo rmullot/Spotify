@@ -9,7 +9,7 @@
 import Foundation
 import SpotifyCore
 
-final class ArtistViewModel {
+final class ArtistViewModel: BaseViewModel {
 
   private var artist: Artist?
 
@@ -26,7 +26,7 @@ final class ArtistViewModel {
     return Image.getBestPicture(images: images, width: width)
   }
 
-  private init() { }
+  internal required init() { }
 
   init(artist: Artist) {
     self.artist = artist

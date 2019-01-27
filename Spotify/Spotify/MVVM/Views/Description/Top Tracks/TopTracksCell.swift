@@ -19,10 +19,6 @@ final class TopTracksCell: UICollectionViewCell {
   var viewModel: TopTracksViewModel! {
     didSet {
       tableview.isHidden = self.viewModel.noResults
-      //TODO: add message error
-      //    if viewModel.noResults {
-      //      viewModel.rebootStatusMessage()
-      //    }
       tableview.reloadData()
       tableview.setNeedsLayout()
       UIView.animate(withDuration: 0.5, animations: {

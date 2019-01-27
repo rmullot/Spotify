@@ -400,8 +400,8 @@
 		7AA7CC0B21FA0F74002DEE1B /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				7AD3C0C021FD2D0700EB226E /* Description */,
 				7AA7CC8821FC78CA002DEE1B /* Launch Screen.storyboard */,
+				7AD3C0C021FD2D0700EB226E /* Description */,
 				7A22638721FCB79300C76F96 /* Search */,
 			);
 			path = Views;
@@ -564,10 +564,8 @@
 				7AD3C0ED21FE299700EB226E /* Albums */,
 				7AD3C0EB21FE193400EB226E /* Top Tracks */,
 				7AD3C0C921FD2EC300EB226E /* Xibs */,
-				7AD3C0C221FD2D1700EB226E /* DescriptionViewController.xib */,
 				7AD3C0C121FD2D1700EB226E /* DescriptionViewController.swift */,
 				7AD3C0DD21FD435A00EB226E /* ArtistHeader.swift */,
-				7AD3C0DE21FD435A00EB226E /* ArtistHeader.xib */,
 			);
 			path = Description;
 			sourceTree = "<group>";
@@ -575,6 +573,8 @@
 		7AD3C0C921FD2EC300EB226E /* Xibs */ = {
 			isa = PBXGroup;
 			children = (
+				7AD3C0C221FD2D1700EB226E /* DescriptionViewController.xib */,
+				7AD3C0DE21FD435A00EB226E /* ArtistHeader.xib */,
 			);
 			path = Xibs;
 			sourceTree = "<group>";
