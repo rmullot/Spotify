@@ -19,19 +19,6 @@ class SearchViewModelTest: XCTestCase {
 
   }
 
-  //TODO: to create a mock environment if I have the time
-  //  func test_search_With_Results() {
-  //    viewModelValid.getArtistsInformations(searchKeyWord: "ACDC")
-  //    XCTAssertEqual(viewModelValid.artistsCount, 1)
-  //    XCTAssertFalse(viewModelValid.noResults)
-  //  }
-  //
-  //  func test_search_Without_Results() {
-  //    viewModelValid.getArtistsInformations(searchKeyWord: "ACDC")
-  //    XCTAssertEqual(viewModelValid.artistsCount, 0)
-  //    XCTAssertTrue(viewModelValid.noResults)
-  //  }
-
   func test_default_errorMessage() {
     XCTAssertEqual(viewModelValid.errorMessage, "")
   }
