@@ -40,10 +40,11 @@ final class DescriptionViewController: BaseViewController<DescriptionViewModel>,
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    self.viewModel.descriptionDidChange = { [weak self] viewModel in
+    viewModel.descriptionDidChange = { [weak self] viewModel in
       self?.collectionView.reloadData()
       self?.refreshLayout(animation: true)
     }
+    view.isAccessibilityElement = false
     collectionView.accessibilityIdentifier = UITestingIdentifiers.descriptionViewController.rawValue
     collectionView.contentInsetAdjustmentBehavior = .never
     collectionView.registerReusableCell(AlbumsCell.self)
