@@ -28,9 +28,9 @@ final class SearchViewController: BaseViewController<SearchViewModel>, UITableVi
       }
       self?.tableView.reloadData()
     }
+    view.isAccessibilityElement = false
+    searchBar.accessibilityIdentifier = UITestingIdentifiers.searchBarSpotify.rawValue
     tableView.accessibilityIdentifier = UITestingIdentifiers.searchViewController.rawValue
-    searchBar.accessibilityIdentifier = UITestingIdentifiers.searchBar.rawValue
-    searchBar.accessibilityTraits = UIAccessibilityTraits.searchField
 
     title = "Spotify"
 
