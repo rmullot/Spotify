@@ -19,6 +19,8 @@ public struct Album: Codable {
     case images = "images"
   }
 
+  public init() { }
+
   public init(from decoder: Decoder) throws {
     let values = try decoder.container(keyedBy: CodingKeys.self)
     idAlbum = try values.decode(String.self, forKey: .idAlbum)

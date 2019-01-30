@@ -20,6 +20,7 @@ public struct Artist: Codable {
     case images = "images"
     case genres = "genres"
   }
+
   public init() { }
 
   public init(from decoder: Decoder) throws {

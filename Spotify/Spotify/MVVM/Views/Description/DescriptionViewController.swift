@@ -56,7 +56,7 @@ final class DescriptionViewController: BaseViewController<DescriptionViewModel>,
   override func viewWillDisappear(_ animated: Bool) {
     super.viewWillDisappear(animated)
     NotificationCenter.default.removeObserver(self)
-    WebServiceService.sharedInstance.cancelRequests()
+    viewModel.cancel()
   }
 
   // MARK: - UICollectionViewDelegate & UICollectionViewDataSource

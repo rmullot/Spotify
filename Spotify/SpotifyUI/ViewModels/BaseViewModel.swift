@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SpotifyCore
 
 public typealias PropertyChangedClosure = (_ name: String) -> Void
 
@@ -32,6 +33,10 @@ open class BaseViewModel: BaseViewModelProtocol {
 
   open var propertyChanged: PropertyChangedClosure?
 
+  open func cancel() {
+    webServiceService.cancelRequests()
+  }
+
   open var errorMessage: String = "" {
     didSet {
       propertyChanged?(PropertyNames.errorMessage.rawValue)
@@ -41,4 +46,25 @@ open class BaseViewModel: BaseViewModelProtocol {
   open func validate() {
     if isValid { propertyChanged?(PropertyNames.isValid.rawValue) }
   }
+
+}
+
+extension BaseViewModel {
+
+  var errorService: ErrorServiceProtocol {
+    return CentralService.sharedInstance.resolve() as ErrorServiceProtocol
+  }
+
+  var navigationService: NavigationServiceProtocol {
+    return CentralService.sharedInstance.resolve() as NavigationServiceProtocol
+  }
+
+  var userDefaultsService: UserDefaultsServiceProtocol {
+    return CentralService.sharedInstance.resolve() as UserDefaultsServiceProtocol
+  }
+
+  var webServiceService: WebServiceServiceProtocol {
+    return CentralService.sharedInstance.resolve() as WebServiceServiceProtocol
+  }
+
 }

@@ -30,7 +30,7 @@ final class SearchViewModel: BaseViewModel {
 
   func getArtistsInformations(searchKeyWord: String) {
     self.artists = nil
-    WebServiceService.sharedInstance.getArtistsList(artistName: searchKeyWord) { (result) in
+    webServiceService.getArtistsList(artistName: searchKeyWord) { (result) in
       switch result {
       case .success(let artists):
         self.artists = artists
@@ -46,7 +46,7 @@ final class SearchViewModel: BaseViewModel {
 
   func displayDescription(index: Int) {
     guard let artists = artists, artists.isValidIndex(index) else { return }
-    NavigationService.sharedInstance.navigateToDescription(artist: artists[index])
+    navigationService.navigateToDescription(artist: artists[index])
   }
 
   func getArtistViewModel(index: Int) -> ArtistViewModel? {

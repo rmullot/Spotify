@@ -140,7 +140,7 @@ public final class WebServiceService: WebServiceServiceProtocol {
               return
             }
             self.spotifyAuth = auth
-            UserDefaultsService.saveObject(self.spotifyAuth)
+            UserDefaultsService.sharedInstance.saveObject(self.spotifyAuth)
             completionHandler(.success(auth))
           case .failure(_, let message):
             completionHandler(.error(message))
@@ -248,7 +248,7 @@ public final class WebServiceService: WebServiceServiceProtocol {
   }
 
   private init() {
-    spotifyAuth = UserDefaultsService.getObject()
+    spotifyAuth = UserDefaultsService.sharedInstance.getObject()
     ReachabilityService.sharedInstance.delegates.add(self)
   }
 
