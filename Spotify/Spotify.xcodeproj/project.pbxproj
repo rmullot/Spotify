@@ -16,7 +16,6 @@
 		7AA24E4B21FCFF3900A2E0AC /* UITestKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AC37F1621FCA5090068C323 /* UITestKey.swift */; };
 		7AA7CBDC21FA0F5D002DEE1B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AA7CBDB21FA0F5D002DEE1B /* AppDelegate.swift */; };
 		7AA7CBE321FA0F5E002DEE1B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7AA7CBE221FA0F5E002DEE1B /* Assets.xcassets */; };
-		7AA7CBF121FA0F5E002DEE1B /* SpotifyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AA7CBF021FA0F5E002DEE1B /* SpotifyTests.swift */; };
 		7AA7CBFC21FA0F5E002DEE1B /* SpotifyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AA7CBFB21FA0F5E002DEE1B /* SpotifyUITests.swift */; };
 		7AA7CC1D21FA115F002DEE1B /* SpotifyCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AA7CC1421FA115F002DEE1B /* SpotifyCore.framework */; };
 		7AA7CC2421FA115F002DEE1B /* SpotifyCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AA7CC2321FA115F002DEE1B /* SpotifyCoreTests.swift */; };
@@ -79,6 +78,12 @@
 		7AD3C0E621FDB73C00EB226E /* AlbumsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD3C0E521FDB73C00EB226E /* AlbumsViewModel.swift */; };
 		7AD3C0E921FDCF2C00EB226E /* TopTracksHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7AD3C0E721FDCF2C00EB226E /* TopTracksHeader.xib */; };
 		7AD3C0EA21FDCF2C00EB226E /* TopTracksHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD3C0E821FDCF2C00EB226E /* TopTracksHeader.swift */; };
+		7AD3C0F021FEC32800EB226E /* EnvironmentMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD3C0EF21FEC32800EB226E /* EnvironmentMock.swift */; };
+		7AD3C0F221FEC3F000EB226E /* CentralService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD3C0F121FEC3F000EB226E /* CentralService.swift */; };
+		7AD3C0F521FECF0B00EB226E /* WebServiceServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD3C0F421FECF0B00EB226E /* WebServiceServiceMock.swift */; };
+		7AD3C0F721FED0EC00EB226E /* ErrorServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD3C0F621FED0EC00EB226E /* ErrorServiceMock.swift */; };
+		7AD3C0F921FED16500EB226E /* UserDefaultsServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD3C0F821FED16500EB226E /* UserDefaultsServiceMock.swift */; };
+		7AD3C0FC220109CB00EB226E /* NavigationServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD3C0FB220109CB00EB226E /* NavigationServiceMock.swift */; };
 		AA2F91F06AB50C4444EAA156 /* libPods-SpotifyUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19A524E33DB04AE2F14CEBB5 /* libPods-SpotifyUITests.a */; };
 		E2CE2CC9D8F37E250BFE3F3E /* Pods_SpotifyCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0347D7BA77BD15210130D0F /* Pods_SpotifyCore.framework */; };
 /* End PBXBuildFile section */
@@ -158,7 +163,6 @@
 		7AA7CBE221FA0F5E002DEE1B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7AA7CBE721FA0F5E002DEE1B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7AA7CBEC21FA0F5E002DEE1B /* SpotifyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SpotifyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		7AA7CBF021FA0F5E002DEE1B /* SpotifyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyTests.swift; sourceTree = "<group>"; };
 		7AA7CBF221FA0F5E002DEE1B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7AA7CBF721FA0F5E002DEE1B /* SpotifyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SpotifyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7AA7CBFB21FA0F5E002DEE1B /* SpotifyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyUITests.swift; sourceTree = "<group>"; };
@@ -227,6 +231,12 @@
 		7AD3C0E521FDB73C00EB226E /* AlbumsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumsViewModel.swift; sourceTree = "<group>"; };
 		7AD3C0E721FDCF2C00EB226E /* TopTracksHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TopTracksHeader.xib; sourceTree = "<group>"; };
 		7AD3C0E821FDCF2C00EB226E /* TopTracksHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopTracksHeader.swift; sourceTree = "<group>"; };
+		7AD3C0EF21FEC32800EB226E /* EnvironmentMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnvironmentMock.swift; sourceTree = "<group>"; };
+		7AD3C0F121FEC3F000EB226E /* CentralService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CentralService.swift; sourceTree = "<group>"; };
+		7AD3C0F421FECF0B00EB226E /* WebServiceServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebServiceServiceMock.swift; sourceTree = "<group>"; };
+		7AD3C0F621FED0EC00EB226E /* ErrorServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorServiceMock.swift; sourceTree = "<group>"; };
+		7AD3C0F821FED16500EB226E /* UserDefaultsServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsServiceMock.swift; sourceTree = "<group>"; };
+		7AD3C0FB220109CB00EB226E /* NavigationServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationServiceMock.swift; sourceTree = "<group>"; };
 		90CBB884C5DC9D5D22E9DC1E /* Pods-SpotifyCore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpotifyCore.debug.xcconfig"; path = "Target Support Files/Pods-SpotifyCore/Pods-SpotifyCore.debug.xcconfig"; sourceTree = "<group>"; };
 		94E6CC3FA9EF9D79CD8C1889 /* Pods-SpotifyCore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpotifyCore.release.xcconfig"; path = "Target Support Files/Pods-SpotifyCore/Pods-SpotifyCore.release.xcconfig"; sourceTree = "<group>"; };
 		A12E01B77748CC0733FF7E9F /* Pods-SpotifyUI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpotifyUI.debug.xcconfig"; path = "Target Support Files/Pods-SpotifyUI/Pods-SpotifyUI.debug.xcconfig"; sourceTree = "<group>"; };
@@ -358,7 +368,8 @@
 		7AA7CBEF21FA0F5E002DEE1B /* SpotifyTests */ = {
 			isa = PBXGroup;
 			children = (
-				7AA7CBF021FA0F5E002DEE1B /* SpotifyTests.swift */,
+				7AD3C0F321FECEF500EB226E /* Mocks */,
+				7AD3C0EF21FEC32800EB226E /* EnvironmentMock.swift */,
 				7AA7CBF221FA0F5E002DEE1B /* Info.plist */,
 				7AD3C0AC21FD063700EB226E /* SearchViewModelTest.swift */,
 				7AD3C0AE21FD064D00EB226E /* ArtistViewModelTest.swift */,
@@ -480,6 +491,7 @@
 		7AA7CC5C21FA1A94002DEE1B /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				7AD3C0F121FEC3F000EB226E /* CentralService.swift */,
 				7AA7CC6F21FA2935002DEE1B /* WebServiceService.swift */,
 				7AA7CC7821FA2EF2002DEE1B /* ParserService.swift */,
 				7AA7CC6B21FA1AC0002DEE1B /* ErrorService.swift */,
@@ -634,6 +646,17 @@
 				7AD3C0CE21FD309700EB226E /* AlbumsCell.xib */,
 			);
 			path = Xibs;
+			sourceTree = "<group>";
+		};
+		7AD3C0F321FECEF500EB226E /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				7AD3C0F421FECF0B00EB226E /* WebServiceServiceMock.swift */,
+				7AD3C0F621FED0EC00EB226E /* ErrorServiceMock.swift */,
+				7AD3C0F821FED16500EB226E /* UserDefaultsServiceMock.swift */,
+				7AD3C0FB220109CB00EB226E /* NavigationServiceMock.swift */,
+			);
+			path = Mocks;
 			sourceTree = "<group>";
 		};
 		814E3E2740C19F1001B9E61C /* Pods */ = {
@@ -1126,7 +1149,11 @@
 			files = (
 				7AD3C0AD21FD063700EB226E /* SearchViewModelTest.swift in Sources */,
 				7AD3C0AF21FD064D00EB226E /* ArtistViewModelTest.swift in Sources */,
-				7AA7CBF121FA0F5E002DEE1B /* SpotifyTests.swift in Sources */,
+				7AD3C0F921FED16500EB226E /* UserDefaultsServiceMock.swift in Sources */,
+				7AD3C0F721FED0EC00EB226E /* ErrorServiceMock.swift in Sources */,
+				7AD3C0FC220109CB00EB226E /* NavigationServiceMock.swift in Sources */,
+				7AD3C0F521FECF0B00EB226E /* WebServiceServiceMock.swift in Sources */,
+				7AD3C0F021FEC32800EB226E /* EnvironmentMock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1152,6 +1179,7 @@
 				7AC37EFE21FC808C0068C323 /* String+Regex.swift in Sources */,
 				7AA7CC7C21FB2ABC002DEE1B /* String+Spotify.swift in Sources */,
 				7AA7CC8221FB8C72002DEE1B /* Array+Spotify.swift in Sources */,
+				7AD3C0F221FEC3F000EB226E /* CentralService.swift in Sources */,
 				7AA7CC7021FA2935002DEE1B /* WebServiceService.swift in Sources */,
 				7AA7CC6621FA1AAD002DEE1B /* ReachabilityService.swift in Sources */,
 				7AA7CC6721FA1AAD002DEE1B /* MultiCastDelegate.swift in Sources */,

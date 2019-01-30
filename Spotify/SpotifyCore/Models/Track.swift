@@ -17,6 +17,8 @@ public struct Track: Codable {
     case name = "name"
   }
 
+  public init() { }
+
   public init(from decoder: Decoder) throws {
     let values = try decoder.container(keyedBy: CodingKeys.self)
     idTrack = try values.decode(String.self, forKey: .idTrack)

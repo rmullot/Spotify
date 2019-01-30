@@ -8,6 +8,7 @@
 
 import UIKit
 import SpotifyUI
+import SpotifyCore
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -21,9 +22,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     navigationController = UINavigationController(rootViewController: searchViewController)
     window!.rootViewController = navigationController
     window!.makeKeyAndVisible()
+    configServices()
     // Override point for customization after application launch.
 
     return true
+  }
+
+  private func configServices() {
+    CentralService.sharedInstance.register { NavigationService.sharedInstance as NavigationServiceProtocol }
+    CentralService.sharedInstance.register { WebServiceService.sharedInstance as WebServiceServiceProtocol }
+    CentralService.sharedInstance.register { ErrorService.sharedInstance as ErrorServiceProtocol }
+    CentralService.sharedInstance.register { UserDefaultsService.sharedInstance as UserDefaultsServiceProtocol }
   }
 
   func applicationWillResignActive(_ application: UIApplication) {

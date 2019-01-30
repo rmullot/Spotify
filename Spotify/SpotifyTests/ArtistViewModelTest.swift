@@ -10,11 +10,12 @@ import XCTest
 import SpotifyCore
 @testable import Spotify
 
-class ArtistViewModelTest: XCTestCase {
+class ArtistViewModelTest: EnvironmentMock {
 
   private var viewModelValid: ArtistViewModel!
 
   override func setUp() {
+    super.setUp()
     var image1 = Image()
     image1.width = 64
     image1.height = 64
@@ -33,6 +34,7 @@ class ArtistViewModelTest: XCTestCase {
   }
 
   override func tearDown() {
+    super.tearDown()
     // Put teardown code here. This method is called after the invocation of each test method in the class.
   }
 

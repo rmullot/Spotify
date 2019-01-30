@@ -22,6 +22,8 @@ public struct SpotifyAuth: Codable {
     case scope = "scope"
   }
 
+  public init() { }
+
   public init(from decoder: Decoder) throws {
     let values = try decoder.container(keyedBy: CodingKeys.self)
     accessToken = try values.decode(String.self, forKey: .accessToken)
@@ -34,7 +36,7 @@ public struct SpotifyAuth: Codable {
   public var isValid: Bool {
     let timeinterval = obtainingDate.timeIntervalSinceNow - Double(expiresIn)
     guard accessToken.isNotEmpty &&  timeinterval <= 0 else {
-      UserDefaultsService.removeObject(self)
+      UserDefaultsService.sharedInstance.removeObject(self)
       return false
     }
     return true

@@ -40,7 +40,7 @@ final class DescriptionViewModel: BaseViewModel {
 
   func updateDescriptionContent() {
     guard let idArtist = artist?.idArtist, idArtist.isNotEmpty else { return }
-    WebServiceService.sharedInstance.getTopTrackList(idArtist: idArtist) { (result) in
+    webServiceService.getTopTrackList(idArtist: idArtist) { (result) in
       switch result {
       case .success(let tracks):
         self.topTracks = tracks
@@ -52,7 +52,7 @@ final class DescriptionViewModel: BaseViewModel {
       self.descriptionDidChange?(self)
     }
 
-    WebServiceService.sharedInstance.getAlbumsList(idArtist: idArtist) { (result) in
+    webServiceService.getAlbumsList(idArtist: idArtist) { (result) in
       switch result {
       case .success(let albums):
         self.albums = albums
