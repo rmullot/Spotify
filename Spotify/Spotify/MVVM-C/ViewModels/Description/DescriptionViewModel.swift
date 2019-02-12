@@ -15,6 +15,8 @@ final class DescriptionViewModel: BaseViewModel {
   private var topTracks: [Track]?
   private var albums: [Album]?
 
+  weak var coordinator: MainCoordinator?
+
   var descriptionDidChange: ((DescriptionViewModel) -> Void)?
 
   internal required init() { }
@@ -40,7 +42,7 @@ final class DescriptionViewModel: BaseViewModel {
 
   func updateDescriptionContent() {
     guard let idArtist = artist?.idArtist, idArtist.isNotEmpty else { return }
-    webServiceService.getTopTrackList(idArtist: idArtist) { (result) in
+    webService.getTopTrackList(idArtist: idArtist) { (result) in
       switch result {
       case .success(let tracks):
         self.topTracks = tracks
@@ -52,7 +54,7 @@ final class DescriptionViewModel: BaseViewModel {
       self.descriptionDidChange?(self)
     }
 
-    webServiceService.getAlbumsList(idArtist: idArtist) { (result) in
+    webService.getAlbumsList(idArtist: idArtist) { (result) in
       switch result {
       case .success(let albums):
         self.albums = albums

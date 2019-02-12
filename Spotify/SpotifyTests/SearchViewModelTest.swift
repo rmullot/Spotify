@@ -29,13 +29,13 @@ class SearchViewModelTest: EnvironmentMock {
   }
 
   func test_search_Valid() {
-    webServiceService.isTokenValid = true
+    webService.isTokenValid = true
     viewModelValid.getArtistsInformations(searchKeyWord: "ACDC")
     XCTAssertEqual(viewModelValid.artistsCount, 1)
   }
 
   func test_search_Invalid() {
-    webServiceService.isTokenValid = false
+    webService.isTokenValid = false
     viewModelValid.getArtistsInformations(searchKeyWord: "ACDC")
     XCTAssertEqual(viewModelValid.artistsCount, 0)
   }

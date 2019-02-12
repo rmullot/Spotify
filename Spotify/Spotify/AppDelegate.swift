@@ -14,23 +14,26 @@ import SpotifyCore
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
   var window: UIWindow?
+  var coordinator = MainCoordinator()
   var navigationController: UINavigationController!
 
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+
+    configServices()
+
+    navigationController = UINavigationController()
     window = UIWindow(frame: UIScreen.main.bounds)
-    let searchViewController = SearchViewController.initFromNib()
-    navigationController = UINavigationController(rootViewController: searchViewController)
     window!.rootViewController = navigationController
     window!.makeKeyAndVisible()
-    configServices()
+    coordinator.start()
+
     // Override point for customization after application launch.
 
     return true
   }
 
   private func configServices() {
-    CentralService.sharedInstance.register { NavigationService.sharedInstance as NavigationServiceProtocol }
-    CentralService.sharedInstance.register { WebServiceService.sharedInstance as WebServiceServiceProtocol }
+    CentralService.sharedInstance.register { WebService.sharedInstance as WebServiceProtocol }
     CentralService.sharedInstance.register { ErrorService.sharedInstance as ErrorServiceProtocol }
     CentralService.sharedInstance.register { UserDefaultsService.sharedInstance as UserDefaultsServiceProtocol }
   }

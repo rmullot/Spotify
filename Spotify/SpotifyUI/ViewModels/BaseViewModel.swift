@@ -34,7 +34,7 @@ open class BaseViewModel: BaseViewModelProtocol {
   open var propertyChanged: PropertyChangedClosure?
 
   open func cancel() {
-    webServiceService.cancelRequests()
+    webService.cancelRequests()
   }
 
   open var errorMessage: String = "" {
@@ -55,16 +55,12 @@ extension BaseViewModel {
     return CentralService.sharedInstance.resolve() as ErrorServiceProtocol
   }
 
-  var navigationService: NavigationServiceProtocol {
-    return CentralService.sharedInstance.resolve() as NavigationServiceProtocol
-  }
-
   var userDefaultsService: UserDefaultsServiceProtocol {
     return CentralService.sharedInstance.resolve() as UserDefaultsServiceProtocol
   }
 
-  var webServiceService: WebServiceServiceProtocol {
-    return CentralService.sharedInstance.resolve() as WebServiceServiceProtocol
+  var webService: WebServiceProtocol {
+    return CentralService.sharedInstance.resolve() as WebServiceProtocol
   }
 
 }

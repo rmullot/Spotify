@@ -1,5 +1,5 @@
 //
-//  WebServiceService.swift
+//  WebService.swift
 //  SpotifyCore
 //
 //  Created by Romain Mullot on 24/01/2019.
@@ -14,7 +14,7 @@ public enum Result<T> {
   case error(String)
 }
 
-public protocol WebServiceServiceProtocol {
+public protocol WebServiceProtocol {
   var isTokenValid: Bool { get }
   func getAuth(completionHandler:@escaping (Result<SpotifyAuth>) -> Void)
   func getArtistsList(artistName: String, completionHandler: @escaping (Result<[Artist]>) -> Void)
@@ -23,7 +23,7 @@ public protocol WebServiceServiceProtocol {
   func cancelRequests()
 }
 
-public final class WebServiceService: WebServiceServiceProtocol {
+public final class WebService: WebServiceProtocol {
 
   // MARK: Attributes
 
@@ -51,7 +51,7 @@ public final class WebServiceService: WebServiceServiceProtocol {
   }
 
   public var onlineMode: OnlineMode = .online
-  public static let sharedInstance = WebServiceService()
+  public static let sharedInstance = WebService()
 
   private var spotifyAuth: SpotifyAuth?
 
@@ -202,8 +202,8 @@ public final class WebServiceService: WebServiceServiceProtocol {
 
   // MARK: - Private Methods
   private func checkAuth(completionHandler: @escaping (Bool) -> Void) {
-    guard WebServiceService.sharedInstance.isTokenValid else {
-      WebServiceService.sharedInstance.getAuth { result in
+    guard WebService.sharedInstance.isTokenValid else {
+      WebService.sharedInstance.getAuth { result in
         switch result {
         case .success:
           completionHandler(true)
@@ -280,7 +280,7 @@ public final class WebServiceService: WebServiceServiceProtocol {
 }
 
 // MARK: - ReachabilityManagerDelegate
-extension WebServiceService: ReachabilityServiceDelegate {
+extension WebService: ReachabilityServiceDelegate {
 
   public func onlineModeChanged(_ newMode: OnlineMode) {
     if onlineMode != newMode {

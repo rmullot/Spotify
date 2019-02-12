@@ -1,5 +1,5 @@
 //
-//  WebServiceServiceMock.swift
+//  WebServiceMock.swift
 //  SpotifyTests
 //
 //  Created by Romain Mullot on 28/01/2019.
@@ -8,7 +8,7 @@
 
 import SpotifyCore
 
-final class WebServiceServiceMock: WebServiceServiceProtocol {
+final class WebServiceMock: WebServiceProtocol {
 
   var isTokenValid: Bool = true
 

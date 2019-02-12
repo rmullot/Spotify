@@ -12,20 +12,18 @@ import SpotifyCore
 
 class EnvironmentMock: XCTestCase {
 
-  var webServiceService: WebServiceServiceMock!
+  var webService: WebServiceMock!
   var errorService: ErrorServiceMock!
   var userDefaultsService: UserDefaultsServiceMock!
-  var navigationService: NavigationServiceMock!
 
   override func setUp() {
     super.setUp()
 
     self.initializeMocks()
 
-    webServiceService = (CentralService.sharedInstance.resolve() as WebServiceServiceProtocol) as? WebServiceServiceMock
+    webService = (CentralService.sharedInstance.resolve() as WebServiceProtocol) as? WebServiceMock
     errorService = (CentralService.sharedInstance.resolve() as ErrorServiceProtocol) as? ErrorServiceMock
     userDefaultsService = (CentralService.sharedInstance.resolve() as UserDefaultsServiceProtocol) as? UserDefaultsServiceMock
-    navigationService = (CentralService.sharedInstance.resolve() as NavigationServiceProtocol) as? NavigationServiceMock
   }
 
   override func tearDown() {
@@ -34,10 +32,9 @@ class EnvironmentMock: XCTestCase {
   }
 
   private func initializeMocks() {
-    CentralService.sharedInstance.register { WebServiceServiceMock() as WebServiceServiceProtocol }
+    CentralService.sharedInstance.register { WebServiceMock() as WebServiceProtocol }
     CentralService.sharedInstance.register { ErrorServiceMock() as ErrorServiceProtocol }
     CentralService.sharedInstance.register { UserDefaultsServiceMock() as UserDefaultsServiceProtocol }
-    CentralService.sharedInstance.register { NavigationServiceMock() as NavigationServiceProtocol }
   }
 
 }

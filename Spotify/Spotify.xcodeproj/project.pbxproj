@@ -33,7 +33,7 @@
 		7AA7CC6921FA1AAD002DEE1B /* MutexCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AA7CC6221FA1AAD002DEE1B /* MutexCounter.swift */; };
 		7AA7CC6A21FA1AAD002DEE1B /* CwlMutex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AA7CC6421FA1AAD002DEE1B /* CwlMutex.swift */; };
 		7AA7CC6C21FA1AC0002DEE1B /* ErrorService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AA7CC6B21FA1AC0002DEE1B /* ErrorService.swift */; };
-		7AA7CC7021FA2935002DEE1B /* WebServiceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AA7CC6F21FA2935002DEE1B /* WebServiceService.swift */; };
+		7AA7CC7021FA2935002DEE1B /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AA7CC6F21FA2935002DEE1B /* WebService.swift */; };
 		7AA7CC7321FA2D1F002DEE1B /* Artist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AA7CC7221FA2D1F002DEE1B /* Artist.swift */; };
 		7AA7CC7521FA2D2A002DEE1B /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AA7CC7421FA2D2A002DEE1B /* Album.swift */; };
 		7AA7CC7721FA2D36002DEE1B /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AA7CC7621FA2D36002DEE1B /* Track.swift */; };
@@ -58,7 +58,7 @@
 		7AC37F1721FCA5090068C323 /* UITestKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AC37F1621FCA5090068C323 /* UITestKey.swift */; };
 		7AD3C0AD21FD063700EB226E /* SearchViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD3C0AC21FD063700EB226E /* SearchViewModelTest.swift */; };
 		7AD3C0AF21FD064D00EB226E /* ArtistViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD3C0AE21FD064D00EB226E /* ArtistViewModelTest.swift */; };
-		7AD3C0BE21FD2C1700EB226E /* NavigationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD3C0BD21FD2C1700EB226E /* NavigationService.swift */; };
+		7AD3C0BE21FD2C1700EB226E /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD3C0BD21FD2C1700EB226E /* MainCoordinator.swift */; };
 		7AD3C0C321FD2D1700EB226E /* DescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD3C0C121FD2D1700EB226E /* DescriptionViewController.swift */; };
 		7AD3C0C421FD2D1700EB226E /* DescriptionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7AD3C0C221FD2D1700EB226E /* DescriptionViewController.xib */; };
 		7AD3C0C621FD2D3700EB226E /* DescriptionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD3C0C521FD2D3700EB226E /* DescriptionViewModel.swift */; };
@@ -80,10 +80,9 @@
 		7AD3C0EA21FDCF2C00EB226E /* TopTracksHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD3C0E821FDCF2C00EB226E /* TopTracksHeader.swift */; };
 		7AD3C0F021FEC32800EB226E /* EnvironmentMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD3C0EF21FEC32800EB226E /* EnvironmentMock.swift */; };
 		7AD3C0F221FEC3F000EB226E /* CentralService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD3C0F121FEC3F000EB226E /* CentralService.swift */; };
-		7AD3C0F521FECF0B00EB226E /* WebServiceServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD3C0F421FECF0B00EB226E /* WebServiceServiceMock.swift */; };
+		7AD3C0F521FECF0B00EB226E /* WebServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD3C0F421FECF0B00EB226E /* WebServiceMock.swift */; };
 		7AD3C0F721FED0EC00EB226E /* ErrorServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD3C0F621FED0EC00EB226E /* ErrorServiceMock.swift */; };
 		7AD3C0F921FED16500EB226E /* UserDefaultsServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD3C0F821FED16500EB226E /* UserDefaultsServiceMock.swift */; };
-		7AD3C0FC220109CB00EB226E /* NavigationServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD3C0FB220109CB00EB226E /* NavigationServiceMock.swift */; };
 		AA2F91F06AB50C4444EAA156 /* libPods-SpotifyUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19A524E33DB04AE2F14CEBB5 /* libPods-SpotifyUITests.a */; };
 		E2CE2CC9D8F37E250BFE3F3E /* Pods_SpotifyCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0347D7BA77BD15210130D0F /* Pods_SpotifyCore.framework */; };
 /* End PBXBuildFile section */
@@ -184,7 +183,7 @@
 		7AA7CC6221FA1AAD002DEE1B /* MutexCounter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MutexCounter.swift; sourceTree = "<group>"; };
 		7AA7CC6421FA1AAD002DEE1B /* CwlMutex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CwlMutex.swift; sourceTree = "<group>"; };
 		7AA7CC6B21FA1AC0002DEE1B /* ErrorService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorService.swift; sourceTree = "<group>"; };
-		7AA7CC6F21FA2935002DEE1B /* WebServiceService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebServiceService.swift; sourceTree = "<group>"; };
+		7AA7CC6F21FA2935002DEE1B /* WebService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebService.swift; sourceTree = "<group>"; };
 		7AA7CC7221FA2D1F002DEE1B /* Artist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Artist.swift; sourceTree = "<group>"; };
 		7AA7CC7421FA2D2A002DEE1B /* Album.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Album.swift; sourceTree = "<group>"; };
 		7AA7CC7621FA2D36002DEE1B /* Track.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
@@ -211,7 +210,7 @@
 		7AC37F1621FCA5090068C323 /* UITestKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITestKey.swift; sourceTree = "<group>"; };
 		7AD3C0AC21FD063700EB226E /* SearchViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModelTest.swift; sourceTree = "<group>"; };
 		7AD3C0AE21FD064D00EB226E /* ArtistViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistViewModelTest.swift; sourceTree = "<group>"; };
-		7AD3C0BD21FD2C1700EB226E /* NavigationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationService.swift; sourceTree = "<group>"; };
+		7AD3C0BD21FD2C1700EB226E /* MainCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 		7AD3C0C121FD2D1700EB226E /* DescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionViewController.swift; sourceTree = "<group>"; };
 		7AD3C0C221FD2D1700EB226E /* DescriptionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DescriptionViewController.xib; sourceTree = "<group>"; };
 		7AD3C0C521FD2D3700EB226E /* DescriptionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionViewModel.swift; sourceTree = "<group>"; };
@@ -233,10 +232,9 @@
 		7AD3C0E821FDCF2C00EB226E /* TopTracksHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopTracksHeader.swift; sourceTree = "<group>"; };
 		7AD3C0EF21FEC32800EB226E /* EnvironmentMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnvironmentMock.swift; sourceTree = "<group>"; };
 		7AD3C0F121FEC3F000EB226E /* CentralService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CentralService.swift; sourceTree = "<group>"; };
-		7AD3C0F421FECF0B00EB226E /* WebServiceServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebServiceServiceMock.swift; sourceTree = "<group>"; };
+		7AD3C0F421FECF0B00EB226E /* WebServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebServiceMock.swift; sourceTree = "<group>"; };
 		7AD3C0F621FED0EC00EB226E /* ErrorServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorServiceMock.swift; sourceTree = "<group>"; };
 		7AD3C0F821FED16500EB226E /* UserDefaultsServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsServiceMock.swift; sourceTree = "<group>"; };
-		7AD3C0FB220109CB00EB226E /* NavigationServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationServiceMock.swift; sourceTree = "<group>"; };
 		90CBB884C5DC9D5D22E9DC1E /* Pods-SpotifyCore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpotifyCore.debug.xcconfig"; path = "Target Support Files/Pods-SpotifyCore/Pods-SpotifyCore.debug.xcconfig"; sourceTree = "<group>"; };
 		94E6CC3FA9EF9D79CD8C1889 /* Pods-SpotifyCore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpotifyCore.release.xcconfig"; path = "Target Support Files/Pods-SpotifyCore/Pods-SpotifyCore.release.xcconfig"; sourceTree = "<group>"; };
 		A12E01B77748CC0733FF7E9F /* Pods-SpotifyUI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpotifyUI.debug.xcconfig"; path = "Target Support Files/Pods-SpotifyUI/Pods-SpotifyUI.debug.xcconfig"; sourceTree = "<group>"; };
@@ -356,9 +354,8 @@
 			isa = PBXGroup;
 			children = (
 				7AA7CC0E21FA0F9F002DEE1B /* Resources */,
-				7AA7CC0921FA0F65002DEE1B /* MVVM */,
+				7AA7CC0921FA0F65002DEE1B /* MVVM-C */,
 				7AA7CBDB21FA0F5D002DEE1B /* AppDelegate.swift */,
-				7AD3C0BD21FD2C1700EB226E /* NavigationService.swift */,
 				7AC37F1621FCA5090068C323 /* UITestKey.swift */,
 				7AA7CBE721FA0F5E002DEE1B /* Info.plist */,
 			);
@@ -386,13 +383,14 @@
 			path = SpotifyUITests;
 			sourceTree = "<group>";
 		};
-		7AA7CC0921FA0F65002DEE1B /* MVVM */ = {
+		7AA7CC0921FA0F65002DEE1B /* MVVM-C */ = {
 			isa = PBXGroup;
 			children = (
+				7AEB2DCC2213567500B4FDDA /* Coordinators */,
 				7AA7CC0B21FA0F74002DEE1B /* Views */,
 				7AA7CC0A21FA0F6B002DEE1B /* ViewModels */,
 			);
-			path = MVVM;
+			path = "MVVM-C";
 			sourceTree = "<group>";
 		};
 		7AA7CC0A21FA0F6B002DEE1B /* ViewModels */ = {
@@ -492,7 +490,7 @@
 			isa = PBXGroup;
 			children = (
 				7AD3C0F121FEC3F000EB226E /* CentralService.swift */,
-				7AA7CC6F21FA2935002DEE1B /* WebServiceService.swift */,
+				7AA7CC6F21FA2935002DEE1B /* WebService.swift */,
 				7AA7CC7821FA2EF2002DEE1B /* ParserService.swift */,
 				7AA7CC6B21FA1AC0002DEE1B /* ErrorService.swift */,
 				7AA7CC7F21FB7AB3002DEE1B /* UserDefaultsService.swift */,
@@ -651,12 +649,19 @@
 		7AD3C0F321FECEF500EB226E /* Mocks */ = {
 			isa = PBXGroup;
 			children = (
-				7AD3C0F421FECF0B00EB226E /* WebServiceServiceMock.swift */,
+				7AD3C0F421FECF0B00EB226E /* WebServiceMock.swift */,
 				7AD3C0F621FED0EC00EB226E /* ErrorServiceMock.swift */,
 				7AD3C0F821FED16500EB226E /* UserDefaultsServiceMock.swift */,
-				7AD3C0FB220109CB00EB226E /* NavigationServiceMock.swift */,
 			);
 			path = Mocks;
+			sourceTree = "<group>";
+		};
+		7AEB2DCC2213567500B4FDDA /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				7AD3C0BD21FD2C1700EB226E /* MainCoordinator.swift */,
+			);
+			path = Coordinators;
 			sourceTree = "<group>";
 		};
 		814E3E2740C19F1001B9E61C /* Pods */ = {
@@ -1120,7 +1125,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7AC37F1521FC9B470068C323 /* ArtistViewModel.swift in Sources */,
-				7AD3C0BE21FD2C1700EB226E /* NavigationService.swift in Sources */,
+				7AD3C0BE21FD2C1700EB226E /* MainCoordinator.swift in Sources */,
 				7AD3C0E221FD440100EB226E /* AlbumViewModel.swift in Sources */,
 				7AC37F1721FCA5090068C323 /* UITestKey.swift in Sources */,
 				7AD3C0E621FDB73C00EB226E /* AlbumsViewModel.swift in Sources */,
@@ -1151,8 +1156,7 @@
 				7AD3C0AF21FD064D00EB226E /* ArtistViewModelTest.swift in Sources */,
 				7AD3C0F921FED16500EB226E /* UserDefaultsServiceMock.swift in Sources */,
 				7AD3C0F721FED0EC00EB226E /* ErrorServiceMock.swift in Sources */,
-				7AD3C0FC220109CB00EB226E /* NavigationServiceMock.swift in Sources */,
-				7AD3C0F521FECF0B00EB226E /* WebServiceServiceMock.swift in Sources */,
+				7AD3C0F521FECF0B00EB226E /* WebServiceMock.swift in Sources */,
 				7AD3C0F021FEC32800EB226E /* EnvironmentMock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1180,7 +1184,7 @@
 				7AA7CC7C21FB2ABC002DEE1B /* String+Spotify.swift in Sources */,
 				7AA7CC8221FB8C72002DEE1B /* Array+Spotify.swift in Sources */,
 				7AD3C0F221FEC3F000EB226E /* CentralService.swift in Sources */,
-				7AA7CC7021FA2935002DEE1B /* WebServiceService.swift in Sources */,
+				7AA7CC7021FA2935002DEE1B /* WebService.swift in Sources */,
 				7AA7CC6621FA1AAD002DEE1B /* ReachabilityService.swift in Sources */,
 				7AA7CC6721FA1AAD002DEE1B /* MultiCastDelegate.swift in Sources */,
 				7AA7CC7521FA2D2A002DEE1B /* Album.swift in Sources */,

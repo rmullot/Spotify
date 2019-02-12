@@ -12,6 +12,8 @@ import SpotifyUI
 
 final class SearchViewModel: BaseViewModel {
 
+  weak var coordinator: MainCoordinator?
+
   enum PropertyKeys: String {
     case errorMessage
   }
@@ -30,7 +32,7 @@ final class SearchViewModel: BaseViewModel {
 
   func getArtistsInformations(searchKeyWord: String) {
     self.artists = nil
-    webServiceService.getArtistsList(artistName: searchKeyWord) { (result) in
+    webService.getArtistsList(artistName: searchKeyWord) { (result) in
       switch result {
       case .success(let artists):
         self.artists = artists
@@ -45,8 +47,9 @@ final class SearchViewModel: BaseViewModel {
   }
 
   func displayDescription(index: Int) {
+    webService.cancelRequests()
     guard let artists = artists, artists.isValidIndex(index) else { return }
-    navigationService.navigateToDescription(artist: artists[index])
+    coordinator?.displayDescription(artist: artists[index])
   }
 
   func getArtistViewModel(index: Int) -> ArtistViewModel? {
